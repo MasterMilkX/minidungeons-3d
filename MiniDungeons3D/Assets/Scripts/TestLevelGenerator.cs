@@ -7,6 +7,7 @@ public class TestLevelGenerator : MonoBehaviour
 
 	public GameObject wall;
 	public GameObject floor;
+	public GameObject ceiling;
 
 	public Transform Level;
 	public Transform Player;
@@ -51,6 +52,14 @@ public class TestLevelGenerator : MonoBehaviour
 		for(int h=0;h<levelHeight;h++){
 			for(int w=0;w<levelWidth;w++){
 				GameObject newFloor = Instantiate(floor, new Vector3(w,-0.55f,h), Quaternion.identity);
+				newFloor.transform.SetParent(Level);
+			}
+		}
+
+		//place upside floor (ceiling)
+		for(int h=0;h<levelHeight;h++){
+			for(int w=0;w<levelWidth;w++){
+				GameObject newFloor = Instantiate(ceiling, new Vector3(w,0.55f,h), Quaternion.identity * Quaternion.Euler(180,0,0));
 				newFloor.transform.SetParent(Level);
 			}
 		}
