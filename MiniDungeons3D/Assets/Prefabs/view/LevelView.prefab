@@ -1,0 +1,404 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &126760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 426760}
+  - component: {fileID: 11426760}
+  - component: {fileID: 11426762}
+  - component: {fileID: 11426766}
+  - component: {fileID: 11426768}
+  - component: {fileID: 11490974}
+  - component: {fileID: 11475834}
+  - component: {fileID: 114000010895920306}
+  - component: {fileID: 114000010329585552}
+  - component: {fileID: 114000010430811296}
+  - component: {fileID: 114000012870344508}
+  m_Layer: 0
+  m_Name: LevelView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &426760
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9, y: 1.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11426760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71497d741fea4171bed19bee4ebdcb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameCharacters: []
+  _tilePrefab: {fileID: 118528, guid: e10d8c68641334806897fcd2348304a4, type: 2}
+  Animating: 1
+  Replaying: 0
+  MoveSpeed: 0.25
+  _busyAnimating: 0
+  _okForInput: 0
+--- !u!114 &11426762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99de3b0a3ad7844ab9bf86f3a265b9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabEntrance: {fileID: 100000, guid: 423a3574321fa463aad967a956be8910, type: 2}
+  prefabExit: {fileID: 100000, guid: cf0bd7506dedc421fb1ed00bffc1b3f1, type: 2}
+  prefabMeleeMonster: {fileID: 162282, guid: 8dc496565ddda4ebdaf7e9453fe82597, type: 2}
+  prefabPotion: {fileID: 171216, guid: 72a619ad054ad41b5b2ccb92ad7321d8, type: 2}
+  prefabRangedMonster: {fileID: 125808, guid: 6e7511e604fb2432a86143b49637d36a, type: 2}
+  prefabRangedMonsterAttack: {fileID: 194042, guid: 46e6526d2b6e94d9db1611dcbd622238,
+    type: 2}
+  prefabOgreMonster: {fileID: 181102, guid: 830bd2a4ce3814ea28d791bc97f2df67, type: 2}
+  prefabBlobMonster: {fileID: 132020, guid: 335272aef774d442fa7e3aa0e2a49e77, type: 2}
+  prefabMinitaur: {fileID: 119940, guid: 5fb709f31403343a2a522f026df37be1, type: 2}
+  prefabPortal: {fileID: 132592, guid: 2e96b267ad3d3465ba6702fd5a25a9b4, type: 2}
+  prefabTrap: {fileID: 100000, guid: fdcaec2b099db4e9f99b179049451cea, type: 2}
+  prefabTreasure: {fileID: 152576, guid: 179f1700713e54eb798064e805118dca, type: 2}
+  prefabHero: {fileID: 158172, guid: 17e866f6f9d38493b829f2f124a677e7, type: 2}
+  prefabJavelin: {fileID: 100000, guid: 83b4fb381880e4a019b2597529835bd0, type: 2}
+  prefabHealthBadge: {fileID: 0}
+  prefabBloodDecoration: {fileID: 165372, guid: 92e1d60e713344106a911bd30b9f8849,
+    type: 2}
+--- !u!114 &11426766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac12994030d9747c099cd5e7d8d4129d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debug: 0
+  _heatMapping: 0
+  levelNumberString: 
+  currentLevelString: 
+  levelView: {fileID: 11426760}
+  humanController: {fileID: 0}
+  _mainMenu: {fileID: 0}
+  _levelWon: {fileID: 0}
+  _levelLost: {fileID: 0}
+  _inGame: {fileID: 0}
+  _replayMenu: {fileID: 0}
+  _ReplayManager: {fileID: 0}
+  _ReplayPlayer: {fileID: 0}
+  editMode: 1
+  replayMode: 0
+  autoPlayMode: 0
+  replayPauseTime: 0.77
+--- !u!114 &11426768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac70ae38c9122471a952bc524041d20a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Initialized: 0
+  HasAction: 0
+  replayMode: 0
+  _ReplayManager: {fileID: 0}
+  javTargets: []
+  _levelView: {fileID: 0}
+  okForInput: 0
+--- !u!114 &11475834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de7d085079dd42e080dfe068e0b526d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11490974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6249b8c5f0c1147b7b611ddc84ea24ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heatMapSprites: []
+  _heatMapSource: 0
+  _displayYOffset: 0
+  _moveColors:
+  - {fileID: 130534, guid: d9af9b3f8550144bfa6979edb7aff25d, type: 2}
+  - {fileID: 130534, guid: d9af9b3f8550144bfa6979edb7aff25d, type: 2}
+  - {fileID: 130534, guid: d9af9b3f8550144bfa6979edb7aff25d, type: 2}
+  _javelinColors:
+  - {fileID: 161566, guid: 4cf121db13c7a4096b323bf342b6678c, type: 2}
+  - {fileID: 161566, guid: 4cf121db13c7a4096b323bf342b6678c, type: 2}
+  - {fileID: 161566, guid: 4cf121db13c7a4096b323bf342b6678c, type: 2}
+  _levelView: {fileID: 0}
+  _actionString: 'Move_Type,X,Y
+
+    JavelinThrow,1,1
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,-1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,-1,0
+
+    Move,-1,0
+
+    Move,1,0
+
+    Move,-1,0
+
+    Move,1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,-1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,-1,0
+
+    Move,-1,0
+
+    Move,-1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+'
+  _gridDataRoot: /Resources/HeatMapData/GridBased/
+  _actionDataRoot: /Resources/HeatMapData/ActionBased/
+  _tileWidth: -0.2
+  _instantiatedHeatTiles: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 126760}
+  m_IsPrefabParent: 1
+--- !u!114 &114000010329585552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6249b8c5f0c1147b7b611ddc84ea24ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heatMapSprites: []
+  _heatMapSource: 0
+  _displayYOffset: 0
+  _moveColors:
+  - {fileID: 130534, guid: d9af9b3f8550144bfa6979edb7aff25d, type: 2}
+  - {fileID: 130534, guid: d9af9b3f8550144bfa6979edb7aff25d, type: 2}
+  - {fileID: 130534, guid: d9af9b3f8550144bfa6979edb7aff25d, type: 2}
+  _javelinColors:
+  - {fileID: 161566, guid: 4cf121db13c7a4096b323bf342b6678c, type: 2}
+  - {fileID: 161566, guid: 4cf121db13c7a4096b323bf342b6678c, type: 2}
+  - {fileID: 161566, guid: 4cf121db13c7a4096b323bf342b6678c, type: 2}
+  _levelView: {fileID: 0}
+  _actionString: 'Move_Type,X,Y
+
+    JavelinThrow,1,1
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,-1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,-1,0
+
+    Move,-1,0
+
+    Move,1,0
+
+    Move,-1,0
+
+    Move,1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,-1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,-1,0
+
+    Move,-1,0
+
+    Move,-1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,1,0
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+    Move,0,1
+
+'
+  _gridDataRoot: /Resources/HeatMapData/GridBased/
+  _actionDataRoot: /Resources/HeatMapData/ActionBased/
+  _tileWidth: -0.2
+  _instantiatedHeatTiles: []
+--- !u!114 &114000010430811296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de7d085079dd42e080dfe068e0b526d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000010895920306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c06f407743cad749ae2af5f05056b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sessionReplay: {fileID: 0}
+  inputField: {fileID: 0}
+--- !u!114 &114000012870344508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126760}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838174a3017b1f146b142f67cda7c7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replayAttemptCount: 1
+  replayPauseTime: 0.3
