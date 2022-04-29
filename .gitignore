@@ -11,7 +11,7 @@ MiniDungeons3D/[Ll]ogs/*
 MiniDungeons3D/[Mm]emoryCaptures/*
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-MiniDungeons3D/[Aa]ssets/**/*.meta
+# MiniDungeons3D/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 MiniDungeons3D/[Aa]ssets/AssetStoreTools*

@@ -7,6 +7,10 @@ public class TestLevelGenerator : MonoBehaviour
 
 	public GameObject wall;
 	public GameObject floor;
+	public GameObject ceiling;
+
+	public Transform Level;
+	public Transform Player;
 
 	public int levelWidth = 10;
 	public int levelHeight = 10;
@@ -42,10 +46,21 @@ public class TestLevelGenerator : MonoBehaviour
 
 	//place prefabs on the game screen according to the map
 	public void PlaceAscMap(int[] ascMap){
+		List <Vector3> open_pos = new List<Vector3>();
+
 		//place the floor
 		for(int h=0;h<levelHeight;h++){
 			for(int w=0;w<levelWidth;w++){
-				Instantiate(floor, new Vector3(w,-0.55f,h), Quaternion.identity);
+				GameObject newFloor = Instantiate(floor, new Vector3(w,-0.55f,h), Quaternion.identity);
+				newFloor.transform.SetParent(Level);
+			}
+		}
+
+		//place upside floor (ceiling)
+		for(int h=0;h<levelHeight;h++){
+			for(int w=0;w<levelWidth;w++){
+				GameObject newFloor = Instantiate(ceiling, new Vector3(w,0.55f,h), Quaternion.identity * Quaternion.Euler(180,0,0));
+				newFloor.transform.SetParent(Level);
 			}
 		}
 
@@ -53,11 +68,16 @@ public class TestLevelGenerator : MonoBehaviour
 		//place the floor
 		for(int h=0;h<levelHeight;h++){
 			for(int w=0;w<levelWidth;w++){
-				if(wallmap[h,w] == 1)
-					Instantiate(wall, new Vector3(w,0.0f,h), Quaternion.identity);
+				if(wallmap[h,w] == 1){
+					GameObject newWall = Instantiate(wall, new Vector3(w,0.0f,h), Quaternion.identity);
+					newWall.transform.SetParent(Level);
+				}else
+					open_pos.Add(new Vector3(w,-0.55f,h));
 			}
 		}
 
+		//place the player on a random open spot
+		Player.position = open_pos[Random.Range(0,open_pos.Count)];
 
 	}
 
