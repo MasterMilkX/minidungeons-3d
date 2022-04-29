@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #363E74;
+}
+.function_name {
+	font-size: 150%;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.Heading {
+	font-size: 200%;
+	text-decoration: underline;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+p.MsoNormal {
+margin:0in;
+margin-bottom:.0001pt;
+text-align:right;
+direction:rtl;
+unicode-bidi:embed;
+font-size:12.0pt;
+font-family:"Times New Roman";
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+  <p><img src="evolute_small2.png" alt="" width="600" height="82" align="middle" /> </p>
+  <table width="100%" border="5">
+    <tr bgcolor="#6666CC">
+      <td width="49%"><div align="center">
+        <h2><a href="index.html">News and main</a> | <a href="http://sourceforge.net/projects/evolute-csharp/files/">Download</a> | <a href="guide.html">User guide</a> | <a href="reference.html">Function reference</a> | <a href="https://sourceforge.net/apps/phpbb/evolute-csharp/viewforum.php?f=1">Forum</a> | <a href="helptodevelop.html">Help to develop</a></h2>
+      </div></td>
+    </tr>
+  </table>
+  <p></p>
+<table width="100%" border="5">
+    <tr bgcolor="#999999">
+      <td bgcolor="#999999" align="left"><h1><u>Function reference</u></h1></td>
+    </tr>
+    <tr bgcolor="#6666CC">
+      <td bgcolor="#6666CC" align="left"><h4><a href="#EngineClass">The Engine class</a><br />
+          <a href="#ProgramClass">The Program class</a><br />
+          <a href="#AvaliableFunctions">Avaliable functions</a></h4>
+        <p>&nbsp; </p>
+        <h4>When we talk about the main class of Evolute, we talk about Engine.<br />
+        </h4>
+        <p><u><strong class="Heading"><a name="EngineClass" id="EngineClass"></a>Engine class</strong></u><br />
+          <br />
+          The engine class is the main class of the Genetic Programming library called Evolute.<br />
+        Inside the engine, the user can create and evolve programs, and basically run the entire process of evolution.<br />
+        All the settings of the properties must be set before the algorithm runs by the properties and functions.<br />
+        If no such settings are set, then the default values are being used.
+        </p>
+        <h4><u class="function_name">Properties</u><br />
+          <br />
+        <span class="function_name">public FunctionType[] SetFunctions</span> </h4>
+        <p> The set functions property allows the user to set the random functions that<br />
+          May (or may not) will be appearing in the trees, when they initially randomized.<br />
+          Example of usage : <br />
+        </p>
+        <table width="100%" border="1">
+          <tr>
+            <td bgcolor="#FFFFFF"> <p>Engine engEngine = new Engine();</p>
+            <p>engEngine.SetFunctions = new FunctionType[]<br />
+{ new Add(), new Substract(), new Multiply(), new Divide() };</p></td>
+          </tr>
+        </table>
+        <p>in this example, the user created the functions add, substract, multiply, and divide to be participated in the tree creation.<br />
+        which means there is a random chance that these functions will appear in random programs, when they will be created.d</p>
+        <p><span class="function_name">public ValueType[] SetValues</span></p>
+        <p>The set values property allows the user to set the random values that<br />
+  May (or may not) will be appearing in the trees, when they initially randomized.<br />
+  Exmaple of usage : </p>
+        <table width="100%" border="1">
+          <tr>
+            <td bgcolor="#FFFFFF"><p>Engine engEngine = new Engine();</p>
+              <p>engEngine.SetValues = new TreeLanguageEvolute.ValueType[] {new RandomMacro()};</p></td>
+          </tr>
+        </table>
+        <p>in this example, the user created the random values to appear randomly in the trees, when they are created</p>
+        <p><span class="function_name">public FitnessGoalEnum FitnessGoal</span></p>
+        <p>The fitness goal to run the algorithm for (for an example, minimal fitness<br />
+Is used to run the algorithm towards minimal fitness)<br />
+Maximal fitness is used to run the algorithm towards maximal fitness.<br />
+The possible values are MIN_FITNESS or MAX_FITNESS<br />
+Let's give an example : </p>
+        <p>let's say there is an ant which is supposed to eat as many food parts as it can. When we measure the ant's fitness, we would want to measure how many food parts it ate at the end. that would be a sign to how successful the program is. in that case, we would need to set the fitness goal towards max fitness</p>
+        <p>on an other case, let's say there is a robot that needs to navigate to a point in a map. when we measure the robot's fitness, we would want to measure how close he got to that point, which means, distance. the less distance = the better.that would be a sign to how successful the program is. in that case, we would need to set the fitness goal towards the min fitness.</p>
+        <p><span class="function_name">public float SaveTopIndividuals</span></p>
+        <p>A value between 0 to 1 which means<br />
+ How much precentage of individuals whose fitness is the best, will be <br />
+Automatically transferred to the next generation.</p>
+        <p>for an example : if we have a population of 1000 programs, and the value of SaveTopIndividuals is 0.1F, 10% , or 100 best programs will be simply copied to the next population. The best value to use here is 0.01F.</p>
+        <p><span class="function_name">public float ApplyCrossoverOnlyWithFitnessChange</span></p>
+        <p>A property that once it is set, the crossover will only be saved<br />
+ If the produced children fitness has changed by a considerable amount.<br />
+ For an example, if this property is 0.3, then the crossover will<br />
+ Only be saved when the fitness is 130% of the original parent.<br />
+ For best performance, this value should be between 0.01 to 0.1</p>
+        <p>Concrete example :<br />
+        we have parent A and parent B. parent A has 100 fitness, parent B has 50 fitness.<br />
+        ApplyCrossoverOnlyWithFitnessChange = 0.1F.<br />
+        The two sons are being produced by a crossover. both sons are being evaluated, and it seems that son A has 50 fitness, son B has 120 fitness.<br />
+        The question to be asked is : does son A got 110% of it's parent fitness? NO! then the parent A is remained in the population.<br />
+        does son B got 110% of it's parent fitness? yes! so the son will be copied and overwrite the parent B in the population.<br />
+        <br />
+        I have to say that this property doesn't look that promising. The only case it can do good things is when your'e really low on memory and you want to achieve maximum results with little population as possible, and when you don't care how long the algorithm will run.
+<br />
+        </p>
+        <p><span class="function_name">public Program[] Population</span></p>
+        <p>Get the most updated population of programs so far</p>
+        <p><span class="function_name">public int NumberOfPrograms</span></p>
+        <p>The property Sets the number of programs in the population.<br />
+        When we create random programs, we will use this property to determine how big our population is.<br />
+        The population array is created based on this property. if this property is 100, then our population size will be 100.<br />
+        The more programs we have = the better chance to find a solution. There is no other property that will gain you<br />
+        much performance increase in the evolution process. only this property has the strength to really affect the evolution process.
+        <br />
+        </p>
+<p><span class="function_name">public int MinInitialTreeDepth</span>      </p>
+<p>In order to understand the next properties, I want to show you how a tree in Evolute C# looks like.</p>
+<p><img src="evolute_csharptree.jpg" width="40%" height="50%" /></p>
+<p>As you can see, there is a first node, and branches that derive from it.<br />
+Anyways, these trees are created randomly at the start of the evolution process.<br />
+MinInitialTreeDepth refers to how deep the tree must grow at the start.<br />
+If the minimal tree depth<br />
+ Is 3, then the trees will grow no less than 3 sons depth.<br />
+ <br />
+ the best value of this property is 3.
+</p>
+<p class="function_name">public int MaxInitialTreeDepth</p>
+<p>Set the maximal initial tree depth that is used by the <br />
+  Initial random of the trees. For an example, If the maximal tree depth<br />
+  Is 10, then the trees will grow no more than 10 sons depth.<br />
+  the best value of this property is 7.
+</p>
+<p class="function_name">public int MaxOverallTreeDepth</p>
+<p>Set the maximal overall tree depth. This means that the trees will never<br />
+Grow more than the overall tree depth.<br />
+You decide what the best value is. deicde something that is bigger than the maximum initial tree depth,<br />
+It's important to give freedom for the programs to grow, but too much freedom and your program will be slow like hell.
+</p>
+      <p class="function_name">public int Overselection</p>
+      <p>Sets the overselection that is used by the tournament selection.<br />
+  The larger this number is, the more programs have to &quot;compete&quot; between<br />
+  Themselves in order to be selected for the genetic operations.<br />
+By competing, it means the program that has the best fitness wins.<br />
+For an example : If overselection is 1, then a total random program is<br />
+Selected for the genetic operations.<br />
+ If overselection is 2, two random programs compete between themselves <br />
+ And the winning program goes to the genetic operations.</p>
+      <p><span class="function_name">public float ChanceForCrossover<br />
+        <br />
+        </span>Sets the chance for crossover that will be taken into consideration<br />
+        When the algorithm chooses the genetic operations.<br />
+        Since in version 0.1 the genetic operations are either selection or crossover,<br />
+        Only those 2 operations can be randomized.<br />
+         For an example : if the chance is 0.9, then 90% of the time a <br />
+        Crossover operation will be selected, and 10% of the time a cloning<br />
+        Operation will be selected.</p>
+<p class="function_name">public int NumberOfThreads</p>
+<p> Sets the number of threads that will be run when evaluating programs.<br />
+  While this option did not yet checked much, <br />
+  If you need more speed, it can be worth to set this to the number of cores<br />
+  You have in your computer.</p>
+<p class="function_name"><u>Functions</u></p>
+      <p class="function_name">public void DeclareVariable(string strName)</p>
+      <p>Declares a new variable (adds it to the list of variables)<br />
+        So what this function brings me? <br />
+        You can insert variables to the list of variables, and later these variables will be randomly appear in the random programs.<br />
+        By adding a random variable you can put a value inside the tree and then change it before you run the program.<br />
+        so it's like - giving an input to the program.<br />
+      </p>
+      <p>Exmaple of usage :  <br />
+      </p>
+      <p>Put attention to declaring the variable X  before running the algorithm.</p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p>Engine engEngine = new Engine();<br />
+            </p>
+            <p>engEngine.DeclareVariable(&quot;X&quot;);<br />
+engEngine.SetValues = new TreeLanguageEvolute.ValueType[] {new RandomMacro()};<br />
+engEngine.EvalFitnessForProgramEvent += new Engine.EvalFitnessHandler(engEngine_EvalFitnessForProgramEvent);</p>
+            <p>engEngine.RunEvoluteOnThread(10000);</p></td>
+        </tr>
+      </table>
+      <p>On the &quot;engEngine_EvalFitnessForProgramEvent&quot; event, we give fitness to each program. in order to run the program and to provide input for it, we will need to give <br />
+        The value to the variable X : </p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">void</span> <span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span>(<span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progProgram</span>, <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">sender</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> = 0;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Hashtable</span> <span style="color:#020002; ">hsVariables</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">GetVariables</span>();</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Variable</span> <span style="color:#020002; ">varX</span> = (<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;X&quot;</span>];</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">for</span> (<span style="color:blue; ">int</span> <span style="color:#020002; ">nCaseNumber</span> = 0;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span> &lt; 100;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span>++)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:green; ">// y  = 5x^3+x^2+x</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> = (<span style="color:blue; ">float</span>)<span style="color:#2B91AF; ">GlobalRandom</span>.<span style="color:#020002; ">m_rndRandom</span>.<span style="color:#020002; ">NextDouble</span>();</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fExpectedResult</span> = (5 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                    + (3 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>) + <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> += <span style="color:#2B91AF; ">Math</span>.<span style="color:#020002; ">Abs</span>(<span style="color:#020002; ">fExpectedResult</span> - <span style="color:#020002; ">fActualResult</span>);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             if (progProgram.m_fFitness &lt;  0.01F)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//                 progProgram.m_fFitness =</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//                     0.00001F * progProgram.m_arrRoots[0].Count; </span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p></td>
+          </tr>
+      </table>
+      <p><br />
+      </p>
+<p class="function_name">public void RunEvolute(int nNumOfGenerations)</p>
+      <p>After you have set all the properties (or used the dafault values), you can run the algorithm for the number of generations. The algorithm will stop running when it will finish the number of generations.</p>
+      <p class="function_name">public void RunEvoluteOnThread(int nNumOfGenerations)<br />
+      </p>
+      <p>After you have set all the properties (or used the dafault values), you can run the algorithm for the number of generations. The algorithm will stop running when it will finish the number of generations.</p>
+      <p>What this function differs from the previous function? Well, if you plan on doing something else other than waiting for the evolution to happen, You will need to execute it on a thread</p>
+      <p class="function_name">public void StopEvoluteThread(int nNumOfGenerations)</p>
+      <p>If you have executed evolute on a thread, you will need to stop it before the program exits (otherwise the thread will continue to run)</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p><u><strong class="Heading"><a name="ProgramClass" id="ProgramClass"></a>Program class</strong></u><br />
+        <br />
+The program class is a program in Evolute C#.<br />
+Inside the Program class, there's a main tree node, which is the code of the program, and an array of local program variables.<br />
+      In order to determine the successfulness of a random program, the user must give to the program a fitness/grade/mark. <br />
+      In this function reference, i will point on the interface between the user to the program, and how to use that interface.
+      <br />
+      <br />
+      The main interface you will have ever have with a program, is when getting called into the event of evaluating the fitness of a program,<br />
+      Or when accessing the statistics of the generation when it ended, which is other event as well. Therefore, you will never need to<br />
+      access a program outside of these events, you will also never need to create one.
+       </p>
+      <p>(The only other case you will is when defining your own functions to be used)</p>
+<h4 class="function_name"><u>Properties</u></h4>
+<p class="function_name">public int Depth</p>
+<p>Get the depth of root of the program. Since there is only one root of a program in version 0.1, you will simply get the depth of that root.</p>
+<p class="function_name">public int Count</p>
+<p>Get the count of nodes of the program. this will count how many nodes you have in the code of the program.</p>
+<p class="function_name">public float Result</p>
+<p>After a program has been run, you can get the result by accessing this property.<br />
+  Exmaple of usage :
+  <br />
+</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; "><span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; "><span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p></td>
+  </tr>
+</table>
+<p class="function_name">  public float Fitness</p>
+<p>You can get or set the fitness of the program (how good the program is) by using that property. <br />
+  please note that the fitness MUST be set when evaluating the fitness in the event from Engine class.<br />
+  the fitness correctness isn't guranteed anywhere else outside the events.  </p>
+<p class="function_name"><u>Functions</u></p>
+<p class="function_name">public void Run()</p>
+<p>Runs the program, and return the result (the output).</p>
+<p class="function_name">public Hashtable GetVariables()</p>
+<p>Will get all the variables that the user declared before the algorithm ran in a hashtable.</p>
+<p>Usage example :</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">void</span> <span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span>(<span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progProgram</span>, <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">sender</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Hashtable</span> <span style="color:#020002; ">hsVariables</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">GetVariables</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Variable</span> <span style="color:#020002; ">varX</span> = (<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;X&quot;</span>];</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">for</span> (<span style="color:blue; ">int</span> <span style="color:#020002; ">nCaseNumber</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span> &lt; 100;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span>++)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:green; ">// y  = 5x^3+x^2+x</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> = (<span style="color:blue; ">float</span>)<span style="color:#2B91AF; ">GlobalRandom</span>.<span style="color:#020002; ">m_rndRandom</span>.<span style="color:#020002; ">NextDouble</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fExpectedResult</span> = (5 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                    + (3 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>) + <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> += <span style="color:#2B91AF; ">Math</span>.<span style="color:#020002; ">Abs</span>(<span style="color:#020002; ">fExpectedResult</span> - <span style="color:#020002; ">fActualResult</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             if (progProgram.m_fFitness &lt;  0.01F)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//                 progProgram.m_fFitness =</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//                     0.00001F * progProgram.m_arrRoots[0].Count; </span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p></td>
+  </tr>
+</table>
+<p class="function_name">public void Draw(Graphics grpGraphics, int nWidth, int nHeight, Form frmParentForm)</p>
+<p>The function will draw the program using a graphics object of the wanted object to draw upon.<br />
+  nWidth - the wanted width to draw<br />
+  nHeight - the wanted height to draw<br />
+  frmParentForm - the parent form of the graphics object<br />
+  <br />
+  example of usage :<br />
+  </p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:#2B91AF; ">Graphics</span><span style="font-family:'Courier New'; font-size:10.0pt; "> <span style="color:#020002; ">g</span> = <span style="color:blue; ">this</span>.<span style="color:#020002; ">CreateGraphics</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002;">program</span>.<span style="color:#020002; ">Draw</span>(<span style="color:#020002; ">g</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Width</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Height</span>, <span style="color:blue; ">this</span>);</span></p></td>
+  </tr>
+</table>
+<p class="function_name">public object Clone()</p>
+<p>The function clones the program. It also passes on all the roots<br />
+  And clone them recursively, so that all the roots sit on a different<br />
+Memory.<br />
+This function is useful when you want to save a program. If you attempt to just get a program &quot;just like that&quot;, you will be <br />
+disappointed, because the program will change over-time. If you plan on saving a program from the population for long term, you must clone it.</p>
+<p class="Heading"><a name="AvaliableFunctions" id="AvaliableFunctions"></a>Functions inside version 0.1 :</p>
+<p>Add - The add function, Needs two tree sons, adds them both and returns A result as the sum of the both sons<br />
+  Multiply - The multiply function, Needs two tree sons, adds them both and returns A result as the multiplication of the both sons<br />
+  Substract - The substract function, Needs two tree sons, substracts the second son from the First son, and returns a result. <br />
+  Divide - The divide function, Needs two tree sons, Divides the first son The second son and returns the result. <br />
+  Modulo -  The modulo function, Needs two tree sons, modulos the first son The second son and returns the result. <br />
+  Cos -  The Cosinus function, Returns the value of the cosinus of the son.<br />
+  IfGreaterThenElse -   The IfGreaterThenElse function, Needs two tree sons, if the first node is bigger than the second node, then the result returned is the third node.<br />
+Otherwise, the result returned is the fourth node.  <br />
+</p></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</center>
+
+</body>
+</html>

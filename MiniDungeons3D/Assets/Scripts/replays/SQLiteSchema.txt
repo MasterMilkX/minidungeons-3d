@@ -1,0 +1,60 @@
+/* 
+SQLite Schema
+Attempts table store each individual attempt. A new attempt is defined when the player advances to a new level or dies in an existing one.
+AttemptID: GUID, created in the game. Used to link replayData to Attempts.
+Level: Which level is the player attempting.
+StartTime: The time in epoch milisecond format that the player started the attempt in Long format.
+isEngineReplay: Bool value in 0 or 1. 1 Denotes it is indeed an Engine Replay (recording the actions the characthers take)
+0 denotes that it is a UI replay (recording the actions that are on the UI level, which might not resolve in to legal actions)
+
+ReplayData Table stores individual actions.
+ReplayID: Unique ID.
+AttemptID: Denotes whatever attempt this replay data is linked to.
+Action: Either MOVE or JAVELIN.
+TimeStamp: In epoch milisecond format in Long type.
+*/
+
+** BuildVersion.
+** ID of device. 
+
+CREATE TABLE IF NOT EXISTS Attempt(
+	AttemptID 		TEXT NOT NULL,
+	Level 			INT,
+	AttemptNumber 	INT,
+	StartTime 		TEXT NOT NULL,
+	isEngineReplay 	INT,
+	PRIMARY KEY(AttemptID, StartTime)
+);
+
+CREATE TABLE IF NOT EXISTS ReplayData(
+	ReplayID 	INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	AttemptID 	TEXT,
+	Action 		TEXT,
+	DirectionX 	INT,
+	DirectionY 	INT,
+	TimeStamp 	TEXT,
+	TimeSpent 	INTEGER
+);
+
+.save "replays.db"
+
+-------------- MYSQL -------------
+
+CREATE TABLE IF NOT EXISTS Attempt(
+	AttemptID 		VARCHAR(255) NOT NULL,
+	Level 			INT,
+	AttemptNumber 	INT,
+	StartTime 		BIGINT NOT NULL,
+	isEngineReplay 	INT,
+	PRIMARY KEY(AttemptID, StartTime)
+);
+
+CREATE TABLE IF NOT EXISTS ReplayData(
+	AttemptID 	VARCHAR(255),
+	Action 		VARCHAR(255),
+	DirectionX 	INT,
+	DirectionY 	INT,
+	TimeStamp 	VARCHAR(255),
+	TimeSpent 	BIGINT,
+	PRIMARY KEY (AttemptID, TimeStamp)
+);

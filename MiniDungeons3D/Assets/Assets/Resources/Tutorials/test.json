@@ -1,0 +1,8 @@
+{
+	"tutorials":[
+	{"play_style":"runner","steps":[{"vid_loc": "Resources/Tutorials/Vids/dab.mp4", "mechanic_text": "Press Z to dab"},{"vid_loc": "Resources/Tutorials/Vids/regular_show.mp4", "mechanic_text": "Press X to punch"},{"vid_loc": "Resources/Tutorials/Vids/botw_fight.mp4", "mechanic_text": "Press any key to throw random bullshit"}]},
+	{"play_style":"monsterkiller","steps":[{"vid_loc": "Resources/Tutorials/Vids/regular_show.mp4", "mechanic_text": "Press X to punch"},{"vid_loc": "Resources/Tutorials/Vids/botw_fight.mp4", "mechanic_text": "Press any key to throw random bullshit"},{"vid_loc": "Resources/Tutorials/Vids/dab.mp4", "mechanic_text": "Press Z to dab"}]},
+	{"play_style":"treasurecollector","steps":[{"vid_loc": "Resources/Tutorials/Vids/botw_fight.mp4", "mechanic_text": "Press any key to throw random bullshit"},{"vid_loc": "Resources/Tutorials/Vids/dab.mp4", "mechanic_text": "Press Z to dab"},{"vid_loc": "Resources/Tutorials/Vids/regular_show.mp4", "mechanic_text": "Press X to punch"}]},
+	{"play_style":"completionist","steps":[{"vid_loc": "Resources/Tutorials/Vids/botw_fight.mp4", "mechanic_text": "Press any key to throw random bullshit"}]}
+	]
+}

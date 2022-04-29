@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #363E74;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+p.MsoNormal {
+margin:0in;
+margin-bottom:.0001pt;
+text-align:right;
+direction:rtl;
+unicode-bidi:embed;
+font-size:12.0pt;
+font-family:"Times New Roman";
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+  <p><img src="evolute_small2.png" alt="" width="600" height="82" align="middle" /> </p>
+  <table width="100%" border="5">
+    <tr bgcolor="#6666CC">
+      <td width="49%"><div align="center">
+        <h2><a href="index.html">News and main</a> | <a href="http://sourceforge.net/projects/evolute-csharp/files/">Download</a> | <a href="guide.html">User guide</a> | <a href="reference.html">Function reference</a> | <a href="https://sourceforge.net/apps/phpbb/evolute-csharp/viewforum.php?f=1">Forum</a> | <a href="helptodevelop.html">Help to develop</a></h2>
+      </div></td>
+    </tr>
+  </table>
+  <p></p>
+  <table width="100%" border="5">
+    <tr bgcolor="#999999">
+      <td bgcolor="#999999" align="left"><h1><u>User guide of version 0.1</u></h1></td>
+    </tr>
+    <tr bgcolor="#6666CC">
+      <td bgcolor="#6666CC" align="left"><h4>1. <a href="#Introduction">Introduction</a><br />
+        2. <a href="#Exmaples">Exmaples what can be done</a><br />
+        3. <a href="#GeneralUsage">general usage</a><br />
+        4. <a href="#PerformanceTips">Tips for better performance</a></h4>
+      <p>&nbsp;</p>
+      <h2><u><a name="Introduction" id="Introduction"></a>1. Introduction</u></h2>
+      <p> Have you ever thought about randomizing a code, and let the computer write those programs instead of you? Well... that's what genetic programming and genetic algorithm is all about - Letting the computer write the code for you.<br />
+        When you look at a program, you see input and output. It's always working like that.<br />
+        By using this library, you will define the input, and you will take the output.<br />
+        Some programs that will be made by the computer will be better, and some will be worse. You can check how good a program is by giving it an input, and expecting a certain output. If the program didn't reach that output, then the program is bad! but, if the program came closer to the output. the program is better.<br />
+        this grade, or mark , is called Fitness.<br />
+        Let's summarise the role of the user and the library :</p>
+      <p>1. the user decides how the programs will appear.<br />
+        2. the computer randomises random programs<br />
+        3. the computer gives to the user those random programs<br />
+        4. the user gives input to the programs, runs them and takes the output. then he calculates how good the program is.<br />
+        5. the library takes this fitness and works so that the next set of programs will be better than the previous.</p>
+      <p>more on The user decides how the programs will appear : </p>
+      <p>Since the computer randomises programs, still, it needs some rules how to randomise and what to randomise.<br />
+        A program in Evolute C# version 0.1 looks like <a href="evolute_csharptree.jpg">this</a> - a tree. <br />
+        A tree contains a set of functions, variables and values. <br />
+        A function in a tree takes parameters, which are values that will comes from the branches below, doing an action, and returning a result.<br />
+        A variable in a tree has a value that can be changed before the program is being run. it can be accessed globally through the entire program.<br />
+        A value in a tree is a const value that remained through the entire evolution process. it's only used to receive some const value when executing a function.<br />
+        The user can decide what function, variables and values will appear in the random trees. he can also decide what size the trees will be.</p>
+      <h2><u><a name="Exmaples" id="Exmaples"></a>2. Examples what can be done</u></h2>
+      <p>I'm referring now to the first TestProject when you download Evolute.</p>
+      <p>Let's say we have a table, of X values, and a table of Y values.<br />
+        <br />
+      I would like to find the connection between them. Like i said before, a program recieves an input and gives an output. <br />
+      The connection will be a code. the code will receive X, and will output Y.<br />
+      But i have a problem. I don't know the connection between X and Y. I just have examples. and i would like the computer to generate me a code that get's X and outputs Y even not for these examples, but also values outside these examples, like for a new input X that i invented.</p>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">X</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">Y</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">1</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">7</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">-5</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">-605</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">2</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">-34</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">9</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">..</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">4</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">..</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">-7</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">..</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">0</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">..</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">2.5</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">…</span></p></td>
+          </tr>
+        <tr>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">3</span></p></td>
+          <td width="295" valign="top"><p align="center" dir="rtl"><span dir="ltr">..</span></p></td>
+          </tr>
+      </table>
+<p>So can i find a program that i give it X and Y examples and it will give me code how to turn X into Y? <br />
+  let's see.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">engEngine</span> = <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Engine</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">NumberOfPrograms</span> = 1000;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">MinInitialTreeDepth</span> = 3;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">MaxInitialTreeDepth</span> = 7;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">MaxOverallTreeDepth</span> = 10;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">FitnessGoal</span> = <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">FitnessGoalEnum</span>.<span style="color:#020002; ">MIN_FITNESS</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">Overselection</span> = 10;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">ChanceForCrossover</span> = 1F;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">SaveTopIndividuals</span> = 0.01F;</span></p>
+<p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>Here i am creating a new Engine and set up some parameters.<br />
+You don't even have to set those parameters, but if you want to find out more you can look at the reference.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">SetFunctions</span> = <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">FunctionType</span>[]</span></p>
+      <p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            { <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Add</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Substract</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Multiply</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Divide</span>() };</span></p>
+      <p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">SetValues</span> = <span style="color:blue; ">new</span> <span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">ValueType</span>[]  {<span style="color:blue; ">new</span> <span style="color:#2B91AF; ">RandomMacro</span>()};</span></p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>One of the most important things is to determine what will be in those trees. <br />
+  I want to functions &quot;Add, substract, multiply , and divide&quot; to be in the trees.<br />
+  Those functions are just like the ordinary +, -, * and / that we have in C#. they take 2 values and return a result.<br />
+  by defining what functions i want in the trees, i give an option for the computer to use these functions in the creation of random programs.<br />
+  I also set the values that i want to appear in the trees. RandomMacro means that in some tree nodes, random floats between 0 to 1 will appear there.<br />
+  That can be useful, because it gives a chance to the computer to use some values in his programs. it can help the computer, because such random values can give help.<br />
+  (By the way, on this example it actually worsens the process very much)<br />
+  You can also give random values out of your own. If the program your'e trying to find, for an example, needs to find out how to calculate the diameter of  a circle by itself
+  , it's a good idea to put a value of PIE in there.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">           </span></p>
+      <p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:#020002; ">engEngine</span><span style="font-family:'Courier New'; font-size:10.0pt; ">.<span style="color:#020002; ">DeclareVariable</span>(<span style="color:#A31515; ">&quot;X&quot;</span>);</span></p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>This is a declaration of a variable. By declaring the variable X, it will appear randomly on the tree nodes and then we will be able to give input to the programs before running them.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">           </span></p>
+      <p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:#020002; ">engEngine</span><span style="font-family:'Courier New'; font-size:10.0pt; ">.<span style="color:#020002; ">EvalFitnessForProgramEvent</span> += <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">EvalFitnessHandler</span>(<span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span>);</span></p>
+      <p class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">GenerationIsCompleteEvent</span> += <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">GenerationIsCompleteHandler</span>(<span style="color:#020002; ">engEngine_GenerationIsCompleteEvent</span>);</span></p>
+<p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>these are two events that can be invoked from the Engine class. The first event is a MUST. it must be invoked. because you must give a fitness to the programs.<br />
+  the event 
+    <span class="MsoNormal" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:#020002; ">Engine</span><span style="font-family:'Courier New'; font-size:10.0pt; ">.<span style="color:#020002; ">EvalFitnessForProgramEvent</span></span></span> is a MUST.<br />
+  The second event, 
+  <span style="font-family:'Courier New'; font-size:10.0pt; "><span style="color:#020002; ">Engine</span>.<span style="color:#020002; ">GenerationIsCompleteEvent</span></span> is invoked when a generation of programs ends (when all the programs in a generation finished to run and you gave them fitness), that event can provide you statistics about the generation.</p>
+<p>all the code so far :</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:blue; ">namespace</span><span style="font-family:'Courier New'; font-size:10.0pt; "> <span style="color:#020002; ">TestProject</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">{</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    <span style="color:blue; ">public</span> <span style="color:blue; ">partial</span> <span style="color:blue; ">class</span> <span style="color:#2B91AF; ">FunctionGuesserTestForm</span> : <span style="color:#2B91AF; ">Form</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">string</span> <span style="color:#020002; ">strLabelString</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:#020002; ">FunctionGuesserTestForm</span>()</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">InitializeComponent</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">engEngine</span> = <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Engine</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">NumberOfPrograms</span> = 1000;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">MinInitialTreeDepth</span> = 3;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">MaxInitialTreeDepth</span> = 7;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">MaxOverallTreeDepth</span> = 10;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">FitnessGoal</span> = <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">FitnessGoalEnum</span>.<span style="color:#020002; ">MIN_FITNESS</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">Overselection</span> = 10;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">ChanceForCrossover</span> = 1F;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">SaveTopIndividuals</span> = 0.01F;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:green; ">//engEngine.ApplyCrossoverOnlyWithFitnessChange  = 0.1F;</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">SetFunctions</span> = <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">FunctionType</span>[]</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            { <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Add</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Substract</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Multiply</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Divide</span>() };</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">DeclareVariable</span>(<span style="color:#A31515; ">&quot;X&quot;</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">SetValues</span> = <span style="color:blue; ">new</span> <span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">ValueType</span>[]  {<span style="color:blue; ">new</span> <span style="color:#2B91AF; ">RandomMacro</span>()};</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">EvalFitnessForProgramEvent</span> += <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">EvalFitnessHandler</span>(<span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">GenerationIsCompleteEvent</span> += <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">GenerationIsCompleteHandler</span>(<span style="color:#020002; ">engEngine_GenerationIsCompleteEvent</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">RunEvoluteOnThread</span>(10000);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Timer</span> <span style="color:#020002; ">tmTimer</span> = <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Timer</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">tmTimer</span>.<span style="color:#020002; ">Interval</span> = 1000;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">tmTimer</span>.<span style="color:#020002; ">Tick</span> += <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">EventHandler</span>(<span style="color:#020002; ">tmTimer_Tick</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">tmTimer</span>.<span style="color:#020002; ">Start</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>Now let's see what did i do in the <span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span> function.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">void</span> <span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span>(<span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progProgram</span>, <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">sender</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Hashtable</span> <span style="color:#020002; ">hsVariables</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">GetVariables</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Variable</span> <span style="color:#020002; ">varX</span> = (<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;X&quot;</span>];</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">for</span> (<span style="color:blue; ">int</span> <span style="color:#020002; ">nCaseNumber</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span> &lt; 100;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span>++)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:green; ">// y  = 5x^3+x^2+x</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> = (<span style="color:blue; ">float</span>)<span style="color:#2B91AF; ">GlobalRandom</span>.<span style="color:#020002; ">m_rndRandom</span>.<span style="color:#020002; ">NextDouble</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fExpectedResult</span> = (5 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                    + (3 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>) + <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> += <span style="color:#2B91AF; ">Math</span>.<span style="color:#020002; ">Abs</span>(<span style="color:#020002; ">fExpectedResult</span> - <span style="color:#020002; ">fActualResult</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;; font-family: 'Courier New'; font-size: 10.0pt"> }</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        </span></p></td>
+  </tr>
+</table>
+<p>This event gives me the program i need to evaluate it's fitness, that is one program among the entire set of program.<br />
+  <br />
+First i initialise the fitness of the program to 0. why? later you will find out.<br />
+Next, i pull out the Variable X from the hashtable for easyness. The variable will be used in order to give input for the programs.<br />
+let's focus on the for loop, that's the most important part.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">for</span> (<span style="color:blue; ">int</span> <span style="color:#020002; ">nCaseNumber</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span> &lt; 100;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span>++)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:green; ">// y  = 5x^3+x^2+x</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> = (<span style="color:blue; ">float</span>)<span style="color:#2B91AF; ">GlobalRandom</span>.<span style="color:#020002; ">m_rndRandom</span>.<span style="color:#020002; ">NextDouble</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fExpectedResult</span> = (5 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                    + (3 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>) + <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> += <span style="color:#2B91AF; ">Math</span>.<span style="color:#020002; ">Abs</span>(<span style="color:#020002; ">fExpectedResult</span> - <span style="color:#020002; ">fActualResult</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p></td>
+  </tr>
+</table>
+<p>The for loop runs through 100 cases. (or 100 examples)<br />
+  in each iteration of the for loop, i randomly select X value, and i give it to the variable. The moment i give it to the variable (varX.Value = ...) it get's updated in the program tree.<br />
+  afterwards, i generate the Y for the function 5x³+3x²+x. <br />
+</p>
+<p>So what, you may ask. i know the function, what's the point in all of this?! i know the connection, i don't need to create this program.<br />
+  YES - but this is only example, not a real world problem, you may know the connection, but the computer don't know. It only knows examples.<br />
+  instead of writing :
+</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fExpectedResult</span> = (5 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                    + (3 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>) + <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>;</span></p></td>
+  </tr>
+</table>
+<p>I could've easily taken X and Y examples from a file. these are 100 examples randomly generated of X and Y. <br />
+  after we generate an example of X and Y, and we set the input (by setting the variable value of X), it's time to run the program.</p>
+<p>&nbsp; </p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p></td>
+  </tr>
+</table>
+<p>I run the program, then i take the result that the program gave me for the input i gave.<br />
+  we do have the original result (the Y) . so we can find out how the computer got it wrong. the difference between the Y (which we know for sure it's the output we wanted, because we made it) - and the output that the program gave, is the fitness that we can give to the program. <br />
+  that means, the less this fitness is, the better the program because it reaches more and more 
+  to the real output we wanted.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+<p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> += <span style="color:#2B91AF; ">Math</span>.<span style="color:#020002; ">Abs</span>(<span style="color:#020002; ">fExpectedResult</span> - <span style="color:#020002; ">fActualResult</span>);</span></p></td>
+  </tr>
+</table>
+<p>This just sums up what i said above. all the differences for all the 100 cases we generated is the fitness of the program. (this is in order to give the best grade - it's possible that one program will randomly succseed in one example and will fail badly in other. the sum of 100 cases makes it more general so now it will be more difficult for programs to randomly succseed)</p>
+<p>One thing we need to take care of is to set the goal of the evolution towards minimal fitness. we can do that in this code, before the algorithm runs.</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">               <span style="color:#020002; ">engEngine</span>.<span style="color:#020002; ">FitnessGoal</span> = <span style="color:#2B91AF; ">Engine</span>.<span style="color:#2B91AF; ">FitnessGoalEnum</span>.<span style="color:#020002; ">MIN_FITNESS</span>;</span></p></td>
+  </tr>
+</table>
+<p>This is also appearing in the above complete code example.</p>
+<p>The entire code :<br />
+</p>
+<table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:blue; ">void</span><span style="font-family:'Courier New'; font-size:10.0pt; "> <span style="color:#020002; ">tmTimer_Tick</span>(<span style="color:blue; ">object</span> <span style="color:#020002; ">sender</span>, <span style="color:#2B91AF; ">EventArgs</span> <span style="color:#020002; ">e</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">this</span>.<span style="color:#020002; ">label1</span>.<span style="color:#020002; ">Text</span> = <span style="color:#020002; ">strLabelString</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">void</span> <span style="color:#020002; ">engEngine_GenerationIsCompleteEvent</span>(<span style="color:#2B91AF; ">Statistics</span> <span style="color:#020002; ">stsStatistics</span>, <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">sender</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">this</span>.<span style="color:#020002; ">strLabelString</span> = <span style="color:#A31515; ">&quot;Generation  number &quot;</span> + <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">GenerationNumber</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                                + <span style="color:#A31515; ">&quot; : min fitness = &quot;</span> + <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">MinFitnessProgram</span>.<span style="color:#020002; ">Fitness</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                                + <span style="color:#A31515; ">&quot;, Total nodes = &quot;</span> + <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">TotalNodes</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">try</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#2B91AF; ">Graphics</span> <span style="color:#020002; ">g</span> = <span style="color:blue; ">this</span>.<span style="color:#020002; ">CreateGraphics</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">MinFitnessProgram</span>.<span style="color:#020002; ">Draw</span>(<span style="color:#020002; ">g</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Width</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Height</span>, <span style="color:blue; ">this</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">catch</span> (<span style="color:#020002; ">System</span>.<span style="color:#2B91AF; ">Exception</span> <span style="color:#020002; ">ex</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {  </span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">void</span> <span style="color:#020002; ">engEngine_EvalFitnessForProgramEvent</span>(<span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progProgram</span>, <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">sender</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Hashtable</span> <span style="color:#020002; ">hsVariables</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">GetVariables</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Variable</span> <span style="color:#020002; ">varX</span> = (<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;X&quot;</span>];</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">for</span> (<span style="color:blue; ">int</span> <span style="color:#020002; ">nCaseNumber</span> = 0;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span> &lt; 100;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                 <span style="color:#020002; ">nCaseNumber</span>++)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:green; ">// y  = 5x^3+x^2+x</span></span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> = (<span style="color:blue; ">float</span>)<span style="color:#2B91AF; ">GlobalRandom</span>.<span style="color:#020002; ">m_rndRandom</span>.<span style="color:#020002; ">NextDouble</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fExpectedResult</span> = (5 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                    + (3 * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span> * <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>) + <span style="color:#020002; ">varX</span>.<span style="color:#020002; ">Value</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Run</span>();</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">float</span> <span style="color:#020002; ">fActualResult</span> = <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Result</span>;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">progProgram</span>.<span style="color:#020002; ">Fitness</span> += <span style="color:#2B91AF; ">Math</span>.<span style="color:#020002; ">Abs</span>(<span style="color:#020002; ">fExpectedResult</span> - <span style="color:#020002; ">fActualResult</span>);</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             if (progProgram.m_fFitness &lt;  0.01F)</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             {</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//                 progProgram.m_fFitness =</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//                     0.00001F *  progProgram.m_arrRoots[0].Count; </span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:green; ">//             }</span></p>
+      <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+      <p>&nbsp;</p></td>
+    </tr>
+</table>
+<p>So what do we have so far? over many generations that the program's fitness will be generated, the programs will get close and closer to discovering the mathematical function 5x³+3x²+x. <br />
+</p>
+<p>I want to take a moment to explain about the other event, <span style="font-family:'Courier New'; font-size:10.0pt; "><span style="color:#020002; ">Engine</span>.<span style="color:#020002; ">GenerationIsCompleteEvent</span></span>.<br />
+  This event is called at the end of every generation and you can assign to that event in order to get statistics about the generation.
+  <br />
+</p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;">&nbsp;</p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">void</span> <span style="color:#020002; ">engEngine_GenerationIsCompleteEvent</span>(<span style="color:#2B91AF; ">Statistics</span> <span style="color:#020002; ">stsStatistics</span>, <span style="color:#2B91AF; ">Engine</span> <span style="color:#020002; ">sender</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">this</span>.<span style="color:#020002; ">strLabelString</span> = <span style="color:#A31515; ">&quot;Generation  number &quot;</span> + <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">GenerationNumber</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                                + <span style="color:#A31515; ">&quot; : min fitness = &quot;</span> + <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">MinFitnessProgram</span>.<span style="color:#020002; ">Fitness</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                                + <span style="color:#A31515; ">&quot;, Total nodes = &quot;</span> + <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">TotalNodes</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">try</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#2B91AF; ">Graphics</span> <span style="color:#020002; ">g</span> = <span style="color:blue; ">this</span>.<span style="color:#020002; ">CreateGraphics</span>();</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:#020002; ">stsStatistics</span>.<span style="color:#020002; ">MinFitnessProgram</span>.<span style="color:#020002; ">Draw</span>(<span style="color:#020002; ">g</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Width</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Height</span>, <span style="color:blue; ">this</span>);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">catch</span> (<span style="color:#020002; ">System</span>.<span style="color:#2B91AF; ">Exception</span> <span style="color:#020002; ">ex</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {  </span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p></td>
+        </tr>
+      </table>
+      <p>We can get from the Statistics object, info about the generation. such as the generation number, the total nodes in the generation, and also we can get the minimal and maximal programs. (we can also run these programs, and draw them, like in this example)</p>
+      <p>Test project 3 :</p>
+      <p>Test project 3 is about a robot that can rotate itself, and move forward. there are walls around, and it can't cross them. the goal of the robot is to reach a destination point by navigating around the walls. The fitness computation that i did in this example, is the distance between the robot location to the destination location.<br />
+        The programs that managed to get as close as possible to the destination, are better, that's why they got lower fitness.
+      </p>
+      <p>Anyways, I'm not going to explain now the entire process , like i did with test project 1. But i still going to point out few things :</p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:#020002; ">engEngine</span><span style="font-family:'Courier New'; font-size:10.0pt; ">.<span style="color:#020002; ">SetFunctions</span> = <span style="color:blue; ">new</span> <span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">FunctionType</span>[]</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            { <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Add</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Substract</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Multiply</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Divide</span>(),</span></p>
+            <p class="MsoNormal" dir="rtl"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">IfGreaterThenElse</span>(), <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">WillIntersect</span>(<span style="color:blue; ">this</span>.<span style="color:#020002; ">Width</span>, <span style="color:blue; ">this</span>.<span style="color:#020002; ">Height</span>)};</span></p></td>
+        </tr>
+      </table>
+      <p>Put attention to the functions in the function set. The IfGreaterThenElse is an &quot;if&quot; function, that let's the random programs take a conditional path around the tree.<br />
+      A more advanced option is when you want to include functions that are not avaliable in functions that the library includes.<br />
+      In order to do that, you must create them yourself, by inheriting from the Function class. <br />
+      This is an example how it's being done :</p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    <span style="color:blue; ">class</span> <span style="color:#2B91AF; ">WillIntersect</span> : <span style="color:#2B91AF; ">Function</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">int</span> <span style="color:#020002; ">m_nScreenWidth</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">int</span> <span style="color:#020002; ">m_nScreenHeight</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">int</span> <span style="color:#020002; ">NumberOfArguments</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">get</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">return</span> (1);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">string</span> <span style="color:#020002; ">Name</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">get</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">return</span> (<span style="color:#A31515; ">&quot;Intersects&quot;</span>);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:#020002; ">WillIntersect</span>(<span style="color:blue; ">int</span> <span style="color:#020002; ">nScreenWidth</span>, <span style="color:blue; ">int</span> <span style="color:#020002; ">nScreenHeight</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">this</span>.<span style="color:#020002; ">m_nScreenWidth</span> = <span style="color:#020002; ">nScreenWidth</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">this</span>.<span style="color:#020002; ">m_nScreenHeight</span> = <span style="color:#020002; ">nScreenHeight</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">float</span> <span style="color:#020002; ">action</span>(<span style="color:#2B91AF; ">Node</span>[] <span style="color:#020002; ">arrNodes</span>, <span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progOwner</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Hashtable</span> <span style="color:#020002; ">hsVariables</span> = <span style="color:#020002; ">progOwner</span>.<span style="color:#020002; ">GetVariables</span>();</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">float</span> <span style="color:#020002; ">fPlayerX</span> = ((<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;CurrPosX&quot;</span>]).<span style="color:#020002; ">Value</span> * <span style="color:blue; ">this</span>.<span style="color:#020002; ">m_nScreenWidth</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">float</span> <span style="color:#020002; ">fPlayerY</span> = ((<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;CurrPosY&quot;</span>]).<span style="color:#020002; ">Value</span> * <span style="color:blue; ">this</span>.<span style="color:#020002; ">m_nScreenHeight</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">float</span> <span style="color:#020002; ">fAngle</span> = ((<span style="color:#2B91AF; ">Variable</span>)<span style="color:#020002; ">hsVariables</span>[<span style="color:#A31515; ">&quot;CurrAngle&quot;</span>]).<span style="color:#020002; ">Value</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#2B91AF; ">Player</span> <span style="color:#020002; ">plrPlayer</span> = <span style="color:blue; ">new</span> <span style="color:#2B91AF; ">Player</span>(<span style="color:blue; ">new</span> <span style="color:#2B91AF; ">PointF</span>(<span style="color:#020002; ">fPlayerX</span>, <span style="color:#020002; ">fPlayerY</span>));</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:#020002; ">plrPlayer</span>.<span style="color:#020002; ">Angle</span> = <span style="color:#020002; ">fAngle</span>;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">if</span> (<span style="color:#020002; ">plrPlayer</span>.<span style="color:#020002; ">GoingToIntersect</span>(<span style="color:#2B91AF; ">NavigationTestForm</span>.<span style="color:#020002; ">m_lstRects</span>))</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">return</span> (1);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">else</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">return</span> (-1);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">}</span></p></td>
+        </tr>
+      </table>
+      <p>The function class is an abstract class that you inherite from it, you must overload some functions and implement them.<br />
+        The properties that you must implement :</p>
+      <p>The  <span style="color:#020002; ">NumberOfArguments</span> property means, how much arguments your function takes (or uses). In the function in the above example, it takes 1 arguments.<br />
+      The Name property is just a name to give to the function.<br />
+      </p>
+      <p>The functions that you must implement : </p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">float</span> <span style="color:#020002; ">action</span>(<span style="color:#2B91AF; ">Node</span>[] <span style="color:#020002; ">arrNodes</span>, <span style="color:#020002; ">TreeLanguageEvolute</span>.<span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progOwner</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p></td>
+        </tr>
+      </table>
+      <p>Is the function you must implement. When the function is called, you will receive an array of tree nodes, and a program. You can use the program parameter in order to get information from the program itself.<br />
+        However, the parameter you will mainly use will be the arrNodes parameter. for every node, you can return it's value. <br />
+        You can return a value from node[0] by calling arrNodes[0].ReturnValue(..) <br />
+      the NumberOfArguments property will affect how many elements will be inside the array arrNodes that will be passed into the function.</p>
+      <p>WARNING : as of version 0.1, it may not be good to have a function that takes 0 parameters because it can interefere with the tree limits.</p>
+      <p>Another example of a function, which actually uses the nodes, is the &quot;Add&quot; function.</p>
+      <table width="100%" border="1">
+        <tr>
+          <td bgcolor="#FFFFFF"><p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; color:gray; ">///</span><span style="font-family:'Courier New'; font-size:10.0pt; color:green; "> </span><span style="font-family:'Courier New'; font-size:10.0pt; color:gray; ">&lt;summary&gt;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    <span style="color:gray; ">///</span><span style="color:green; "> The add function, Needs two tree sons, adds them both and  returns</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    <span style="color:gray; ">///</span><span style="color:green; "> A result as the sum of the both sons</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    <span style="color:gray; ">///</span><span style="color:green; "> </span><span style="color:gray; ">&lt;/summary&gt;</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    <span style="color:blue; ">public</span> <span style="color:blue; ">class</span> <span style="color:#2B91AF; ">Add</span> : <span style="color:#2B91AF; ">Function</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">float</span> <span style="color:#020002; ">action</span>(<span style="color:#2B91AF; ">Node</span>[] <span style="color:#020002; ">arrNodes</span>, <span style="color:#2B91AF; ">Program</span> <span style="color:#020002; ">progOwner</span>)</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">return</span> (<span style="color:#020002; ">arrNodes</span>[0].<span style="color:#020002; ">ReturnValue</span>(<span style="color:#020002; ">progOwner</span>) + <span style="color:#020002; ">arrNodes</span>[1].<span style="color:#020002; ">ReturnValue</span>(<span style="color:#020002; ">progOwner</span>));</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">int</span> <span style="color:#020002; ">NumberOfArguments</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">get</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">return</span> (2);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">&nbsp;</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        <span style="color:blue; ">public</span> <span style="color:blue; ">override</span> <span style="color:blue; ">string</span> <span style="color:#020002; ">Name</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            <span style="color:blue; ">get</span></span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            {</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">                <span style="color:blue; ">return</span> (<span style="color:#A31515; ">&quot;+&quot;</span>);</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">            }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;text-autospace:none;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">        }</span></p>
+            <p class="MsoNormal" dir="ltr" style="text-align:left;direction:ltr;unicode-bidi:embed;"><span style="font-family:'Courier New'; font-size:10.0pt; ">    }</span></p></td>
+        </tr>
+      </table>
+      <p>As you can see, it takes 2 arguments (which means it will have 2 nodes in arrNodes)<br />
+        it returns the sum of ReturnValue of node[0] added to the ReturnValue of node[1].
+      </p>
+      <h2><u><a name="GeneralUsage" id="GeneralUsage"></a>General usage :</u></h2>
+      <p>Let's review what i said at first, because that will be clearer now.</p>
+      <p>1. the user decides how the programs will appear<br />
+        this is done by setting  all the properties, setting the set of functions, the set of values, and declaring variables
+        <br />
+        2. the computer randomises random programs<br />
+        the algorithm is doing it alone.
+        <br />
+        3. the computer gives to the user those random programs<br />
+        This is done by the event for evaluating a program's fitness.
+        <br />
+        4. the user gives input to the programs, runs them and takes the output. then he calculates how good the program is.<br />
+        This is done by inserting the input to the programs (by setting the values of variables), by running the programs, and setting the fitness of the program.
+        <br />
+        5. the library takes this fitness and works so that the next set of programs will be better than the previous.<br />
+        the algorithm is doing that alone.<br />
+      </p>
+      <p>you also have 3 example projects that you can use to find out what i'm talking about.</p>
+      <h2><u><a name="PerformanceTips" id="PerformanceTips"></a>Tips for better performance :</u></h2>
+      <p>The first thing that affects the performance is the population size. no other property in Engine class affects more than that. <br />
+        more programs meaning having more ideas. more ideas meaning closer chance to discovering the solution. <br />
+        If you must discover a solution, use more population. it will take much more time though.<br />
+      </p>
+      <p>Another second thing that can affect performance, with such easy &quot;one minute tweaks&quot;, is the property &quot;Overselection&quot;<br />
+        If this property is set to a size which is like 1% of the population, 
+        (and not 2 individuals but more) then a big speed up can occur,<br />
+        although, this speed-up is costy, the meaning of selecting only the best individuals from the population is costy. sometimes, the less good<br />
+        individuals can have good ideas inside their code. throwing them away meaning throwing chances for better solutions in the long term.<br />
+        It's up to your choice whether to make that sacrafice.</p>
+      <p>Other good things to know is the limitation of genetic programming.<br />
+        The genetic programming may look like magic at first, but facts are it's quite limited.<br />
+        It's actually very limited in Evolute C# version 0.1 because the automatic function discovery  can improve things a lot.
+        <br />
+        You just can't shove things to the algorithm and say &quot;solve it!&quot;. so lower your expectations already now.<br />
+        Things that you should know is that there is no point at waiting above generation 100, on population of 1000 programs.<br />
+        the more you wait and the programs still perform bad - the less chance that they will ever get better.<br />
+        if you still want to do something complex by the genetic programming algorithm, <br />
+        it's better that you will create as much functions as possible that will do most of the work for them.<br />
+        for an example, if you plan on trying to evolve an artificial intelligence that's moving in   a maze, it's good to have a function named &quot;WallAhead&quot; that will return 1 if there is a wall ahead or -1 if not. Don't try to give an array of walls to the program so it will find it itself (because it won't), 
+        And also, give to the computer as much information that he needs to know. too much information and the performance won't be good.</p>
+      <p><br />
+        one of the other things that should guide you is : &quot;What is the chance, that a completely random program will do something a bit good?&quot;<br />
+        your fitnesses must be as discriptive as possible. the more information you give through the fitness , the more helpful you are in filtering out the bad programs.<br />
+        If the fitness is equal to all the random programs - you have already failed. that should be the guide to place in your head - do something that a completely random program CAN  be &quot;a bit&quot; better than the rest.        </p>
+      <p>Also , don't expect for the programs to know something that only 1 out of a milliard random program is able to find out.<br />
+        Like, don't expect programs to find out alone, that they will need a data that is found at  the index of 9251 of an array that you give to them. That's a really hard function, because the chance that one program will activate it just in the right time is 
+        reaaaaaaly reaaaaally slim.<br />
+      </p></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</center>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #363E74;
+}
+-->
+</style></head>
+
+<body>
+<center>
+  <p><img src="evolute_small2.png" width="600" height="82" align="middle" />
+  </p>
+  <table width="100%" border="5">
+    <tr bgcolor="#6666CC">
+      <td width="49%"><div align="center">
+        <h2><a href="index.html">News and main</a> | <a href="https://sourceforge.net/projects/evolute-csharp/">Project site</a> | <a href="http://sourceforge.net/projects/evolute-csharp/files/">Download</a> | <a href="guide.html">User guide</a> | <a href="reference.html">Function reference</a> | <a href="https://sourceforge.net/apps/phpbb/evolute-csharp/viewforum.php?f=1">Forum</a> | <a href="helptodevelop.html">Help to develop</a></h2>
+      </div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table width="100%" border="5">
+    <tr bgcolor="#999999">
+      <td width="10%">&nbsp;</td>
+      <td bgcolor="#999999" align="left"><h1><u>About Evolute C#</u></h1></td>
+    </tr>
+    <tr bgcolor="#6666CC">
+      <td>&nbsp;</td>
+      <td bgcolor="#6666CC" align="left"><h4><a href="http://youtu.be/F8W5tb9DqzI">Watch Evolute logo on youtube</a></h4>
+        <h4><u>What Exactly is &quot;Evolute C#&quot;?<br />
+          </u>Evolute C# is a genetic programming library, which is used to create and evolve programs randomly.<br />
+          The main focus of the library is to give an easy feeling to the user. You know those libraries, that you download, and you need to look at the &quot;specification&quot;? or perhaps you need to break your head in trying to do something because there are no examples. Evolute is not something like that. Therefore, the library usage is well documented and no such quick &quot;dOXYGEN&quot; crap will be here, at least not at first.
+        </h4>
+        <p><u>What is genetic programming?</u><u><br />
+      </u>Genetic programming is an algorithm that was really expanded by John Koza, at first, the computer generates a population of completely random programs,<br />
+        Later, the programs are being run and the user gives a fitness, or mark, for each program. The algorithm will use this fitness in order to select individuals from the population that are better than others for some future genetic operations. <br />
+        The genetic operations are cloning, crossover and mutation.<br />
+        After we have selected the &quot;relatively good&quot; individuals from the population, we randomly select an action to perform.<br />
+        Cloning, means for this relatively good individual, we just copy it to the next population of the next generation. <br />
+        Crossover, means for two relatively good individuals, we create new two sons, that part of their code is taken from parent one, and the other part is taken from parent two.<br />
+        Mutation, means take a random part of the code and replace it with totally new random code.<br />
+        after many such cycles, called &quot;generations&quot;, that these actions are being performed on the relatively good individuals, we expect that the code will get better. and so it does - after a while we get programs that perform better at the tasks we wanted them to perform.</p>
+        <p>Overall, genetic programming is a search and optimization algorithm.</p>
+        <p>For more info about Genetic Programming (about the algorithm itself), look at : <a href="http://www.genetic-programming.org/">http://www.genetic-programming.org/</a></p></td>
+    </tr>
+  </table>
+  <table width="100%" border="5">
+   <tr bgcolor="#999999">
+      <td width="10%">&nbsp;</td>
+      <td bgcolor="#999999" align="left"><h1><u>Release 0.2</u> (23.2.2013)</h1></td>
+    </tr>
+    <tr bgcolor="#6666CC">
+      <td>&nbsp;</td>
+      <td bgcolor="#6666CC" align="left"><p>Hi, my name is Itay. And this is 
+        Release 0.2, the second release of Evolute C#.<br />
+        A few trials and attempts have been made for progressing Evolute C# performance. Including Automatic function definitions, island mechanisms, population destruction, higher chance to select worse individuals, gene expression programming/grammatical evolution, and individual protection mechanisms.<br />
+        Few of the mechanisms were too complicated, lacked performance for the required tests, and did not make it to this release.</p>
+<p>By using the new 0.2 features, the evolution performance in Evolute C# 0.2 generally outperforms Evolute C# 0.1 when trying to reach fitness goals of complex problems.</p>
+<p>Notable performance examples :<br /> 
+  * Evolute 0.2 has evolved a function that draws a circle reaching 0.7 fitness (out of maximal fitness of 1000), when scanning 300 out of 10,000 pixels. Evolution time 8 hours on Q6600. The project will be included inside the library examples.<br />
+  * Evolute 0.2 has evolved a boolean function that returns true if a sound is &quot;Do&quot; or false if the sound is not &quot;Do&quot; with up to 80% test sample accuracity.
+  Evolution time 18 hours on Q6600.<br />
+* Evolute 0.2 has evolved a creature who's goal is to travel the most distance in a tunnel system. The creature was able to travel fairly well within an hour. The project will be included inside the library examples.</p>
+<p>&nbsp; </p>
+<p>it can be downloaded here : <a href="http://sourceforge.net/projects/evolute-csharp/files/">Download link</a></p>
+      <p><u>What's new?</u><br />
+      </p>
+      <p>- Introducing the ability to save and load  tree language programs from file<br />
+        - Introducing the ability to evolve programs that contains a number of results. (A number of roots)<br />
+      -    Introducing the ability to add an additional information objects to a program and get use it in the program's functions<br />
+      - 
+      Introducing islands and parameters controlling the islands (Island size, migration rate, and more)<br />
+      - Introducing mutation<br />
+      - Introducing 
+      control parameter : &quot;Always take better individuals&quot; for tournament selection<br />
+      - Introducing parsimony pressure which enables evolution at huge population sizes<br />
+      - Introducing control parameter in what rate to re-evaluate elitist individuals. (To enhance evolution dramatically when dealing with chaostic environments)<br />
+      - Other little enhancements</p></td>
+    </tr>
+    <tr bgcolor="#999999">
+      <td width="10%">&nbsp;</td>
+      <td bgcolor="#999999" align="left"><h1><u>Release 0.1</u> (6.3.2010)</h1></td>
+    </tr>
+    <tr bgcolor="#6666CC">
+      <td>&nbsp;</td>
+      <td bgcolor="#6666CC" align="left"><p>Release 0.1 is the first release of Evolute C#.</p>
+      <p>it can be downloaded here : <a href="http://sourceforge.net/projects/evolute-csharp/files/">Download link</a></p>
+      <p><u>Features :</u><br />
+      </p>
+      <p>- Tree language.<br />
+        - The ability to create and randomize programs and evolve them on the tree language<br />
+        - The ability to run tree language programs.<br />
+        - The ability to add new tree language functions and to decide the variables and functions on the random programs<br />
+        - The ability to give fitness to each program based on it's output.<br />
+      - Settings such as initial tree depth, maximal tree depth, and more..<br />
+      - Tournament selection only, with overselection option.<br />
+      - There's multithreading.<br />
+      - The tree programs are being evaluated by interpretation.<br />
+      - Statistics at the end of each generation, such as getting the min and max fitness programs.<br />
+      - A drawing function to use on windows forms to view a tree.      <br />
+      - No automatic function discovery<br />
+      - No mutation
+      <br />
+      - Only one root per program limitation</p></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</center>
+
+</body>
+</html>
