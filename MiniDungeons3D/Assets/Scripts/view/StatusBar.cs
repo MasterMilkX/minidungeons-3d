@@ -27,7 +27,7 @@ public class StatusBar : MonoBehaviour
 		height = transform.GetComponent<RectTransform>().rect.height;
 		//barWidth = fullWidth/maxVal;
 		//Debug.Log("w: " + fullWidth + " | h: " + height + " | bw: "+ barWidth);
-		//CreateFullBar(maxVal);
+		CreateFullBar(maxVal,false);
 		//UpdateValue(curVal);
 	}
 

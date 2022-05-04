@@ -48,7 +48,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   moveSpeed: 0.25
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  turnSpeed: 10
+  turnSpeed: 7
 --- !u!1 &7932979930225128076
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 0
   orthographic size: 5
