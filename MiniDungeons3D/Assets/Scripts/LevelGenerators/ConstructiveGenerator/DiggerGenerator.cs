@@ -665,7 +665,7 @@ public class DiggerGenerator : Creator
 	/// </summary>
 	private void PlopExit()
 	{
-		if (!map[AgentYPos][AgentXPos].Equals("E"))
+		if (!map[AgentYPos][AgentXPos].Equals("e"))
 		{
 			map[AgentYPos][AgentXPos] = "e";
 			ExitIsPlopped = true;
@@ -767,5 +767,7 @@ public class DiggerGenerator : Creator
 			TrapCount++;
 		}
 	}
+
+
 }
 
