@@ -306,7 +306,7 @@ public class LevelView : MonoBehaviour
     IEnumerator ShakeShack(Transform shook,int intensity=1){
 
         for ( int i = 0; i < 10; i++){
-            Vector3 randVec = new Vector3((10-i/2)*(UnityEngine.Random.value < 0.5 ? -1 : 1),(10-i/2)*(UnityEngine.Random.value < 0.5 ? -1 : 1),0.0f);    //amount to change by
+            Vector3 randVec = new Vector3((5-i/2)*(UnityEngine.Random.value < 0.5 ? -1 : 1),(5-i/2)*(UnityEngine.Random.value < 0.5 ? -1 : 1),0.0f);    //amount to change by
 
             shook.localPosition += randVec*intensity;
             yield return new WaitForSeconds(damageTimer/20.0f);
