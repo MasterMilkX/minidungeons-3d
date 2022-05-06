@@ -414,6 +414,7 @@ public class LevelView : MonoBehaviour
                     SetAnimating(1);
                     
                     iTween.MoveTo(viewChar, tweenArgs);
+                    StartCoroutine(TimedAnimationToggle(viewChar3D, "Moving", false, MoveSpeed));
                     viewChar3D.transform.position = actionEndPosition3D;
                 }
             }
@@ -604,9 +605,16 @@ public class LevelView : MonoBehaviour
                 var actionStartPosition = transform.position + new Vector3(action.FromPoint.X * _tileSize.x, action.FromPoint.Y * _tileSize.y * -1, 0);
                 var actionEndPosition = transform.position + new Vector3(action.ToPoint.X * _tileSize.x, action.ToPoint.Y * _tileSize.y * -1, 0);
 
+
+                var actionEndPosition3D = _levelTransform.position + new Vector3(action.ToPoint.Y, -0.55f, action.ToPoint.X);
+
                 GameObject viewHero = null;
                 GameObject fromPortal = null;
                 GameObject toPortal = null;
+
+                GameObject viewHero3D = null;
+                GameObject fromPortal3D = null;
+                GameObject toPortal3D = null;
 
                 for (int i = 0; i < _level.Characters.Length; i++)
                 {
@@ -616,16 +624,19 @@ public class LevelView : MonoBehaviour
                     if (_level.Characters[i].CharacterType == GameCharacterTypes.Hero)
                     {
                         viewHero = _gameCharacters[i];
+                        viewHero3D = _gameCharacters3D[i];
                     }
                     //Find first portal
                     if (_level.Characters[i].Point == action.FromPoint && _level.Characters[i].CharacterType == GameCharacterTypes.Portal)
                     {
                         fromPortal = _gameCharacters[i];
+                        fromPortal3D = _gameCharacters3D[i];
                     }
                     //Find second portal
                     if (_level.Characters[i].Point == action.ToPoint && _level.Characters[i].CharacterType == GameCharacterTypes.Portal)
                     {
                         toPortal = _gameCharacters[i];
+                        toPortal3D = _gameCharacters3D[i];
                     }
                 }
 
@@ -637,6 +648,8 @@ public class LevelView : MonoBehaviour
                 Hashtable tweenArgs = iTween.Hash("position", actionEndPosition, "delay", 0.05f, "time", 0.05f, "easetype", iTween.EaseType.linear, "oncomplete", "SetAnimating", "oncompletetarget", this.gameObject, "oncompleteparams", -1);
                 SetAnimating(1);
                 iTween.MoveTo(viewHero, tweenArgs);
+
+                viewHero3D.transform.position = actionEndPosition3D;
             }
         }
     }

@@ -14,7 +14,9 @@ public class BillboardSprite : MonoBehaviour
     void Update()
     {
         //always face the target
-        if(faceTarget != null)
+        if(faceTarget == null)
+            faceTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        if (faceTarget != null)
        		transform.eulerAngles = faceTarget.eulerAngles;
     }
 }
