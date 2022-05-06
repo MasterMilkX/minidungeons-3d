@@ -193,9 +193,16 @@ public class LevelView : MonoBehaviour
         if (Animating && !Replaying)
         {
             StartCoroutine(Animate(level));
+
+            //update UI
+            sbH.UpdateValue(level.SimHero.Health);
+            sbT.UpdateValue(level.SimHero.TreasureCollected);
+            sbM.UpdateValue(level.GetMonsterKilled());
         }
         else
         {
+
+            //update character
             for (int character = 0; character < _level.Characters.Length; character++)
             {
                 SimGameCharacter oldCharacter = _level.Characters[character];
@@ -222,6 +229,7 @@ public class LevelView : MonoBehaviour
                     }
                 }
             }
+
             _level = level.Clone();
         }
     }
