@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &402092859
 PrefabInstance:
@@ -340,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7424194
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalPosition.y
@@ -406,6 +406,66 @@ PrefabInstance:
       propertyPath: _ceilingPrefab3D
       value: 
       objectReference: {fileID: 3430069850749184731, guid: 47aa469eeec384c859cebdb87b3e9e08, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabExit3D
+      value: 
+      objectReference: {fileID: 8497383888270127508, guid: d9da0de7a26064ca489ed010de327316, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabHero3D
+      value: 
+      objectReference: {fileID: 7932979930088650582, guid: 73fec0c003dae4e018afd6e813112eea, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabTrap3D
+      value: 
+      objectReference: {fileID: 2996300674523108622, guid: f1fbc4fe5069c4065b1c5adf9aa3b591, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabPortal3D
+      value: 
+      objectReference: {fileID: 4420179356093284829, guid: 6f1607806d4c44255ae52eb1f15ac6c1, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabPotion3D
+      value: 
+      objectReference: {fileID: 8222279911215774055, guid: aafae43728d7b4bb2b32f41d9d9659ab, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabJavelin3D
+      value: 
+      objectReference: {fileID: 100000, guid: 83b4fb381880e4a019b2597529835bd0, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabEntrance3D
+      value: 
+      objectReference: {fileID: 8497383888270127508, guid: d9da0de7a26064ca489ed010de327316, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabMinitaur3D
+      value: 
+      objectReference: {fileID: 5441025172861261170, guid: 88037d1d1a81e45ae87de3753f3723ac, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabTreasure3D
+      value: 
+      objectReference: {fileID: 6462028269215956409, guid: e117af97a80a044a7a0a8fe0c86734d9, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabBlobMonster3D
+      value: 
+      objectReference: {fileID: 1882898758054434403, guid: 389e591a029ae4c58803e9d9566301fb, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabOgreMonster3D
+      value: 
+      objectReference: {fileID: 4179290166219458850, guid: 7dc12a795049c49e78505996748c0115, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabMeleeMonster3D
+      value: 
+      objectReference: {fileID: 8070071604484152020, guid: 99b94adde58944e718396ea29b5aafa5, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabRangedMonster3D
+      value: 
+      objectReference: {fileID: 5624911114423215615, guid: 71362a2841bb2448791e4d8fa890f15e, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabBloodDecoration3D
+      value: 
+      objectReference: {fileID: 165372, guid: 92e1d60e713344106a911bd30b9f8849, type: 3}
+    - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: prefabRangedMonsterAttack3D
+      value: 
+      objectReference: {fileID: 194042, guid: 46e6526d2b6e94d9db1611dcbd622238, type: 3}
     - target: {fileID: 114000010329585552, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -593,7 +653,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2201445821479947143, guid: cfbc9a6e4eec447b49c20879d594adbf, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2201445821479947143, guid: cfbc9a6e4eec447b49c20879d594adbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -984,7 +1044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1882898758054658627, guid: 389e591a029ae4c58803e9d9566301fb, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1882898758054658627, guid: 389e591a029ae4c58803e9d9566301fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1037,7 +1097,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2996300674522745134, guid: f1fbc4fe5069c4065b1c5adf9aa3b591, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2996300674522745134, guid: f1fbc4fe5069c4065b1c5adf9aa3b591, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1220,7 +1280,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4420179356092997117, guid: 6f1607806d4c44255ae52eb1f15ac6c1, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4420179356092997117, guid: 6f1607806d4c44255ae52eb1f15ac6c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1350,7 +1410,7 @@ PrefabInstance:
       objectReference: {fileID: 822782124}
     - target: {fileID: 5441025172861430162, guid: 88037d1d1a81e45ae87de3753f3723ac, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5441025172861430162, guid: 88037d1d1a81e45ae87de3753f3723ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1403,7 +1463,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5624911114422727135, guid: 71362a2841bb2448791e4d8fa890f15e, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5624911114422727135, guid: 71362a2841bb2448791e4d8fa890f15e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1464,7 +1524,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6462028269215714905, guid: e117af97a80a044a7a0a8fe0c86734d9, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6462028269215714905, guid: e117af97a80a044a7a0a8fe0c86734d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1606,7 +1666,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8070071604483976948, guid: 99b94adde58944e718396ea29b5aafa5, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8070071604483976948, guid: 99b94adde58944e718396ea29b5aafa5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1728,7 +1788,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8497383888269634996, guid: d9da0de7a26064ca489ed010de327316, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8497383888269634996, guid: d9da0de7a26064ca489ed010de327316, type: 3}
       propertyPath: m_LocalPosition.x
