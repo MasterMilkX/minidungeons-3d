@@ -51,6 +51,20 @@ namespace Assets.Scripts.simulator.Controllers.Human
         List<SimPoint> targetPoints;
         int targetSelected = 0;
 
+
+        // 3D moving and turning vars
+        //movement vars
+        private Vector3 curPos;
+        public Vector3 targetPos;
+        private bool moving = false;
+        public float moveSpeed = 0.75f;
+        private float t = 0;
+
+        //rotation vars
+        public Quaternion targetRot;
+        private bool turning = false;
+        public float turnSpeed = 0.75f;
+
         // Use this for initialization
         void Awake()
         {
@@ -61,9 +75,31 @@ namespace Assets.Scripts.simulator.Controllers.Human
         // Update is called once per frame
         void Update()
         {
-            if (Initialized && true)
+            if (Initialized)
             {
-                TakeInput();
+                if (moving)
+                {
+                    t += Time.deltaTime / moveSpeed;
+                    Player3D.position = Vector3.MoveTowards(curPos, targetPos, t);
+                    if (Vector3.Distance(Player3D.position, targetPos) < 0.1)
+                    {
+                        Player3D.position = targetPos;
+                        moving = false;
+                    }
+                }
+                else if (turning)
+                {
+                    Player3D.rotation = Quaternion.Lerp(Player3D.rotation, targetRot, turnSpeed * Time.deltaTime);
+                    if (Quaternion.Angle(Player3D.rotation, targetRot) < 2)
+                    {
+                        Player3D.rotation = targetRot;
+                        turning = false;
+                    }
+                }
+                else
+                {
+                    TakeInput();
+                }
             }
         }
 
@@ -95,6 +131,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
         }
         void TakeInput()
         {
+
             if (Input.GetKeyUp(KeyCode.Y))
             {
                 Debug.Log("Possible actions");
@@ -104,6 +141,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
                     Debug.Log(action);
                 }
             }
+
 
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -128,6 +166,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
                     nextAction = (new SimHeroAction(HeroActionTypes.Move, SimPoint.West));
                 }
                 HasAction = true;
+                //MoveForward();
                 //}
                 // try
                 // {
@@ -140,6 +179,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+                TurnRight();
                 /*if (javelinActivated)
                 {
                     if (targets.Count > 1)
@@ -203,6 +243,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                TurnLeft();
                 /*if (javelinActivated)
                 {
                     if (targets.Count > 1)
@@ -257,22 +298,53 @@ namespace Assets.Scripts.simulator.Controllers.Human
         
         string DirectionCheck()
         {
-            float y = Player3D.rotation.y;
+            float y = Player3D.rotation.eulerAngles.y;
+            Debug.Log("Rotation: " + y);
             if (y == 0f)
             {
                 return "north";
             } else if (y == 90f)
             {
-                return "east";
+                return "west";
             } else if(y == 180f)
             {
                 return "south";
             } else
             {
-                return "west";
+                return "east";
             }
         }
+
+        // HELLA basic movement controls
+        public void MoveForward()
+        {
+            t = 0;
+            curPos = Player3D.position;
+            targetPos = Player3D.position - Player3D.forward * 1.0f;
+            moving = true;
+        }
+
+        public void MoveBackward()
+        {
+            t = 0;
+            curPos = Player3D.position;
+            targetPos = Player3D.position + Player3D.forward * 1.0f;
+            moving = true;
+        }
+
+        void TurnRight()
+        {
+            targetRot = Player3D.rotation * Quaternion.Euler(0, 90, 0);
+            turning = true;
+        }
+
+        void TurnLeft()
+        {
+            targetRot = Player3D.rotation * Quaternion.Euler(0, -90, 0);
+            turning = true;
+        }
     }
+
 
 
 }

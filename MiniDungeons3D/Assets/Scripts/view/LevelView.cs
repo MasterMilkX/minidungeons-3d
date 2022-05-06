@@ -11,6 +11,8 @@ public class LevelView : MonoBehaviour
     public GameObject healthBar, treasureBar, monsterBar;
     public GameObject[,] _map;
     public GameObject[] _gameCharacters;
+    public GameObject[] _gameCharacters3D;
+
     public Dictionary<SimPoint, GameObject> _javelins;
     int counter = 0;
 
