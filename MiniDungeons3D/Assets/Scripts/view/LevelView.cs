@@ -19,6 +19,8 @@ public class LevelView : MonoBehaviour
     public GameObject[] _gameCharacters;
     public GameObject[] _gameCharacters3D;
 
+    public Transform Player;
+
     public Dictionary<SimPoint, GameObject> _javelins;
     public Dictionary<SimPoint, GameObject> _javelins3D;
     int counter = 0;
@@ -193,6 +195,7 @@ public class LevelView : MonoBehaviour
                 Camera playerCam = gameCharacter.GetComponentInChildren<Camera>();
                 playerCam.targetTexture = targetTexture3D;
                 gameCharacter.transform.rotation = Quaternion.identity;
+                Player = gameCharacter.transform;
             }
         }
     }
@@ -461,7 +464,6 @@ public class LevelView : MonoBehaviour
                     SetAnimating(1);
                     
                     iTween.MoveTo(viewChar, tweenArgs);
-                    StartCoroutine(TimedAnimationToggle(viewChar3D, "Moving", false, MoveSpeed));
                     viewChar3D.transform.position = actionEndPosition3D;
                 }
             }
@@ -587,16 +589,19 @@ public class LevelView : MonoBehaviour
         {
             var levelChar = _level.Characters[i];
             var viewChar = _gameCharacters[i];
+            var viewChar3D = _gameCharacters3D[i];
             if (_level.Characters[i].CharacterType == GameCharacterTypes.MinitaurMonster)
             {
                 var minitaurMonster = (SimMinitaurMonster)levelChar;
                 if (minitaurMonster.KnockoutCounter > 0)
                 {
                     viewChar.GetComponentInChildren<Animator>().SetBool("KnockedOut", true);
+                    viewChar3D.GetComponentInChildren<Animator>().SetBool("KnockedOut", true);
                 }
                 else
                 {
                     viewChar.GetComponentInChildren<Animator>().SetBool("KnockedOut", false);
+                    viewChar3D.GetComponentInChildren<Animator>().SetBool("KnockedOut", false);
                 }
 
             }
@@ -634,11 +639,13 @@ public class LevelView : MonoBehaviour
         {
             var levelChar = _level.Characters[i];
             var viewChar = _gameCharacters[i];
+            var viewChar3D = _gameCharacters3D[i];
 
             if (levelChar.CharacterType == GameCharacterTypes.OgreMonster)
             {
                 var ogre = (SimOgreMonster)levelChar;
                 viewChar.GetComponent<Animator>().SetInteger("Development", ogre.TreasureCollected);
+                viewChar3D.GetComponent<Animator>().SetInteger("Development", ogre.TreasureCollected);
             }
         }
     }
@@ -707,6 +714,7 @@ public class LevelView : MonoBehaviour
         {
             var levelChar = _level.Characters[i];
             var viewChar = _gameCharacters[i];
+            //var viewChar3D = _gameCharacters3D[i];
             List<SimCharacterAction> actions = levelChar.CachedActions;
 
             foreach (SimCharacterAction action in actions)
@@ -718,7 +726,8 @@ public class LevelView : MonoBehaviour
                     {
                         if (_level.Characters[j].Point == action.ToPoint && _level.Characters[j].CharacterType == GameCharacterTypes.Trap)
                         {
-                            _gameCharacters[j].GetComponent<Animator>().SetTrigger("SpringTrap");
+                            viewChar.GetComponent<Animator>().SetTrigger("SpringTrap");
+                            //viewChar3D.GetComponent<Animator>().SetTrigger("SpringTrap");
                         }
                     }
                 }
@@ -824,6 +833,15 @@ public class LevelView : MonoBehaviour
                 }
 
                 anim.SetBool("Alive", _level.Characters[i].Alive);
+                if (_level.Characters[i].CharacterType != GameCharacterTypes.Hero && _level.Characters[i].CharacterType != GameCharacterTypes.Potion && _level.Characters[i].CharacterType != GameCharacterTypes.Treasure && _level.Characters[i].CharacterType != GameCharacterTypes.Trap)
+                {
+                    Animator anim3D = _gameCharacters3D[i].GetComponent<Animator>();
+                    anim3D.SetBool("Alive", _level.Characters[i].Alive);
+                } else if (_level.Characters[i].CharacterType == GameCharacterTypes.Hero)
+                {
+                    Animator anim3D = _gameCharacters3D[i].GetComponentInChildren<Animator>();
+                    anim3D.SetBool("Alive", _level.Characters[i].Alive);
+                }
                 // Debug.Log("Char: " + _gameCharacters[i] + ", " + level.Characters[i].Alive);
             }
         }
@@ -902,19 +920,24 @@ public class LevelView : MonoBehaviour
     {
         if (Initialized)
         {
+            Initialized = false;
             for (int character = 0; character < _gameCharacters.Length; character++)
             {
                 try
                 {
                     _gameCharacters[character].GetComponent<Animator>().SetBool("Alive", true);
+                    _gameCharacters3D[character].GetComponent<Animator>().SetBool("Alive", true);
                 }
                 catch
                 {
                     Debug.Log(_gameCharacters[character] + " has no animator controller to modify");
                 }
                 Destroy(_gameCharacters[character]);
+                Destroy(_gameCharacters3D[character]);
             }
+
             _gameCharacters = null;
+            _gameCharacters3D = null;
             for (int x = 0; x < _map.GetLength(0); x++)
             {
                 for (int y = 0; y < _map.GetLength(1); y++)
@@ -924,6 +947,6 @@ public class LevelView : MonoBehaviour
             }
             _map = null;
         }
-        Initialized = false;
+        
     }
 }

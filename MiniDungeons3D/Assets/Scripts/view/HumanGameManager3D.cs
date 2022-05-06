@@ -16,11 +16,12 @@ public class HumanGameManager3D : MonoBehaviour
     public string[][] currentLevelArray;
     public SimLevel currentLevel;
     public SimControllerHeroHuman3D humanController;
+    
     public LevelView levelView;
     public GameObject _inGame;
     public static ViewState _viewState = ViewState.MainMenu;
     public bool PlayingClassic;
-
+    public Audio_Manager audio_manager;
 
     public GameObject[] _UIInterfaces;
 
@@ -32,10 +33,14 @@ public class HumanGameManager3D : MonoBehaviour
 
     public List<Transform> place_objs;
 
+    // included for debugging right now
+    public TestLevelGenerator testGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
         humanController = GetComponent<SimControllerHeroHuman3D>();
+        testGenerator = GetComponent<TestLevelGenerator>();
     }
 
     // Update is called once per frame
@@ -44,31 +49,52 @@ public class HumanGameManager3D : MonoBehaviour
 
         if (levelView._okForInput)
         {
-            if (humanController.HasAction)
+            if (currentLevel.SimLevelState == SimLevelState.Playing)
             {
-                nextAction = humanController.NextAction(currentLevel);
-                //Debug.Log("act " + nextAction);
-                if (currentLevel.MoveIsLegal(currentLevel.SimHero, nextAction))
+                if (humanController.HasAction)
                 {
-                    Debug.Log(nextAction.ActionType.ToString());
-                    currentLevel.RunTurn(nextAction);
-                    levelView.RefreshView(currentLevel);
-                    try
+                    nextAction = humanController.NextAction(currentLevel);
+                    //Debug.Log("act " + nextAction);
+                    if (currentLevel.MoveIsLegal(currentLevel.SimHero, nextAction))
                     {
-                        humanController.positions.Add(currentLevel.SimHero.Point);
-                        humanController.levelStates.Add(currentLevel.ToAsciiMap());
-                    }
-                    catch
-                    {
-                        Debug.Log("human controller issue");
-                    }
-                    // try { _ReplayManager.sessionReplay.AddEngineAction(nextAction); } catch { }
+                        Debug.Log(nextAction.ActionType.ToString());
+                        currentLevel.RunTurn(nextAction);
+                        levelView.RefreshView(currentLevel);
+                        try
+                        {
+                            humanController.positions.Add(currentLevel.SimHero.Point);
+                            humanController.levelStates.Add(currentLevel.ToAsciiMap());
+                        }
+                        catch
+                        {
+                            Debug.Log("human controller issue");
+                        }
+                        // try { _ReplayManager.sessionReplay.AddEngineAction(nextAction); } catch { }
 
+                    }
                 }
+            }
+            else if (currentLevel.SimLevelState == SimLevelState.Won)
+            {
+                audio_manager.PlaySFX(5);
+                StartNewGame();
+
+            } else if(currentLevel.SimLevelState == SimLevelState.Lost)
+            {
+                audio_manager.PlaySFX(6);
+                StartNewGame();
+
             }
         }
     }    
 
+    public void StartNewGame()
+    {
+        FlushUI();
+
+        string[][] newMap = testGenerator.CreateRandomAscMap();
+        LoadLevel(newMap);
+    }
     public void LoadLevel(string[][] levelArray)
     {
         levelView = GetComponent<LevelView>();
@@ -85,7 +111,7 @@ public class HumanGameManager3D : MonoBehaviour
         FlushUI();
         _inGame.SetActive(true);
 
-        humanController.Initialize(currentLevel);
+        humanController.Initialize(currentLevel, levelView.Player);
 
 
         _viewState = ViewState.Playing;

@@ -9,7 +9,14 @@ public class BillboardSprite : MonoBehaviour
 
     private void Start()
     {
-        faceTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        try
+        {
+            faceTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        catch
+        {
+
+        }
     }
     void Update()
     {
