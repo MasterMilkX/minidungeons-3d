@@ -438,6 +438,10 @@ PrefabInstance:
       propertyPath: _ceilingPrefab3D
       value: 
       objectReference: {fileID: 5706305276085485130, guid: cfbc9a6e4eec447b49c20879d594adbf, type: 3}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: fullPlayer3DView
+      value: 
+      objectReference: {fileID: 571010041}
     - target: {fileID: 11426762, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: prefabExit3D
       value: 
@@ -517,6 +521,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8971853705449398635, guid: 813975e86091243f4858fe224445d737, type: 3}
   m_PrefabInstance: {fileID: 3387750480714051419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &571010041 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7121944447358487341, guid: 8f0f2e16bbb5c4e5f97b9521fd6492f9, type: 3}
+  m_PrefabInstance: {fileID: 402092859}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
