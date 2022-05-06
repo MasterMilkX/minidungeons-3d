@@ -73,7 +73,7 @@ public class LevelView : MonoBehaviour
         {
             for (int y = 0; y < level.BaseMap.GetLength(1); y++)
             {
-                Vector3 newPosition = transform.position + new Vector3(_tilePrefab.GetComponent<Renderer>().bounds.size.x * x * 1.2f, _tilePrefab.GetComponent<Renderer>().bounds.size.y * y * -1 * 1.2f, 0);
+                Vector3 newPosition = transform.position + new Vector3(_tilePrefab.GetComponent<Renderer>().bounds.size.x * x, _tilePrefab.GetComponent<Renderer>().bounds.size.y * y * -1, 0);
                 GameObject newTile = (GameObject)Instantiate(_tilePrefab, newPosition, Quaternion.identity);
 
 
