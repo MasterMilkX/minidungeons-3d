@@ -103,7 +103,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
             }
         }
 
-        public void Initialize(SimLevel level, Transform player)
+        public void Initialize(SimLevel level)
         {
             _level = level;
             Initialized = true;
@@ -115,7 +115,6 @@ namespace Assets.Scripts.simulator.Controllers.Human
             actions = new List<SimHeroAction>();
             positions = new List<SimPoint>();
             levelStates = new List<string>();
-            Player3D = player;
             //Debug.Log("Javelins:" + _level.SimHero.Javelins);
         }
         public SimHeroAction NextAction(SimLevel level)

@@ -21,6 +21,23 @@ public class SimGameCharacterFactory : MonoBehaviour {
 	public GameObject prefabHealthBadge;
 	public GameObject prefabBloodDecoration;
 
+	public GameObject prefabEntrance3D;
+	public GameObject prefabExit3D;
+	public GameObject prefabMeleeMonster3D;
+	public GameObject prefabPotion3D;
+	public GameObject prefabRangedMonster3D;
+	public GameObject prefabRangedMonsterAttack3D;
+	public GameObject prefabOgreMonster3D;
+	public GameObject prefabBlobMonster3D;
+	public GameObject prefabMinitaur3D;
+	public GameObject prefabPortal3D;
+	public GameObject prefabTrap3D;
+	public GameObject prefabTreasure3D;
+	public GameObject prefabHero3D;
+	public GameObject prefabJavelin3D;
+	public GameObject prefabBloodDecoration3D;
+
+
 	public static SimGameCharacterFactory instance{
 		get{
 			if(_instance == null){
@@ -94,4 +111,60 @@ public class SimGameCharacterFactory : MonoBehaviour {
 		
 		return spawn;
 	}
+	public GameObject SpawnGameCharacter3D(GameCharacterTypes gameCharacterType, Vector3 spawnPosition)
+	{
+		GameObject spawn = null;
+
+		switch (gameCharacterType)
+		{
+			case GameCharacterTypes.Entrance:
+				spawn = (GameObject)Instantiate(prefabEntrance3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Exit:
+				spawn = (GameObject)Instantiate(prefabExit3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.MeleeMonster:
+				spawn = (GameObject)Instantiate(prefabMeleeMonster3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Potion:
+				spawn = (GameObject)Instantiate(prefabPotion3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.RangedMonster:
+				spawn = (GameObject)Instantiate(prefabRangedMonster3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.RangedMonsterAttack:
+				spawn = (GameObject)Instantiate(prefabRangedMonsterAttack3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.OgreMonster:
+				spawn = (GameObject)Instantiate(prefabOgreMonster3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.BlobMonster:
+				spawn = (GameObject)Instantiate(prefabBlobMonster3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.MinitaurMonster:
+				spawn = (GameObject)Instantiate(prefabMinitaur3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Portal:
+				spawn = (GameObject)Instantiate(prefabPortal3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Trap:
+				spawn = (GameObject)Instantiate(prefabTrap3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Treasure:
+				spawn = (GameObject)Instantiate(prefabTreasure3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Hero:
+				spawn = (GameObject)Instantiate(prefabHero3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.Javelin:
+				spawn = (GameObject)Instantiate(prefabJavelin3D, spawnPosition, Quaternion.identity);
+				break;
+			case GameCharacterTypes.BloodDecoration:
+				spawn = (GameObject)Instantiate(prefabBloodDecoration3D, spawnPosition, Quaternion.identity);
+				break;
+		}
+
+		return spawn;
+	}
+
 }

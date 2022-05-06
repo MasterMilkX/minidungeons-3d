@@ -28,22 +28,8 @@ public class HumanGameManager3D : MonoBehaviour
     public SimHeroAction nextAction;
 
     // 3D rendering
-    public GameObject wall;
-    public GameObject floor;
-    public GameObject ceiling;
-    public GameObject exit;
-    public GameObject minitaur;
-    public GameObject goblin;
-    public GameObject wizard;
-    public GameObject ogre;
-    public GameObject blob;
-    public GameObject potion;
-    public GameObject treasure;
-    public GameObject trap;
-    public GameObject portal;
     public Transform Player;
 
-    public Transform Level;
     public List<Transform> place_objs;
 
     // Start is called before the first frame update
@@ -99,113 +85,14 @@ public class HumanGameManager3D : MonoBehaviour
         FlushUI();
         _inGame.SetActive(true);
 
-        PlaceAscMap();
-        humanController.Initialize(currentLevel, Player);
+        humanController.Initialize(currentLevel);
 
 
         _viewState = ViewState.Playing;
     }
 
     //place prefabs on the game screen according to the map
-    public void PlaceAscMap()
-    {
-        List<Vector3> open_pos = new List<Vector3>();
-
-        //place the floor
-        for (int h = 0; h < currentLevelArray.Length; h++)
-        {
-            for (int w = 0; w < currentLevelArray[h].Length; w++)
-            {
-                Debug.Log("Here: " + h + ", " + w);
-                GameObject newFloor = Instantiate(floor, new Vector3(w, -0.55f, h), Quaternion.identity);
-                newFloor.transform.SetParent(Level);
-            }
-        }
-
-        //place upside floor (ceiling)
-        for (int h = 0; h < currentLevelArray.Length; h++)
-        {
-            for (int w = 0; w < currentLevelArray[h].Length; w++)
-            {
-                GameObject newFloor = Instantiate(ceiling, new Vector3(w, 0.55f, h), Quaternion.identity * Quaternion.Euler(180, 0, 0));
-                newFloor.transform.SetParent(Level);
-            }
-        }
-
-        
-        //place populate the level
-        for (int h = 0; h < currentLevelArray.Length; h++)
-        {
-            for (int w = 0; w < currentLevelArray[h].Length; w++)
-            {
-                GameObject newObj = null;
-                string val = currentLevelArray[h][w];
-                // wall
-                if (val == "X")
-                {
-                    newObj = Instantiate(wall, new Vector3(w, 0.0f, h), Quaternion.identity);
-                    
-                }
-                // hero
-                else if (val == "H")
-                {
-                    Player.position = new Vector3(w, -0.55f, h);
-                    Player.rotation = Quaternion.identity;
-                }
-                // exit
-                else if(val == "e")
-                {
-                    newObj = Instantiate(exit, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "m")
-                {
-                    newObj = Instantiate(minitaur, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "M")
-                {
-                    newObj = Instantiate(goblin, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "R")
-                {
-                    newObj = Instantiate(wizard, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "o")
-                {
-                    newObj = Instantiate(ogre, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "b")
-                {
-                    newObj = Instantiate(blob, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "T")
-                {
-                    newObj = Instantiate(treasure, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "t")
-                {
-                    newObj = Instantiate(trap, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "P")
-                {
-                    newObj = Instantiate(potion, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                else if (val == "p")
-                {
-                    newObj = Instantiate(portal, new Vector3(w, 0.0f, h), Quaternion.identity);
-                }
-                
-                // is this technically less code? idk
-                try
-                {
-                    newObj.transform.SetParent(Level);
-                }
-                catch
-                {
-                    // do nothing this is fine
-                }
-            }
-        }
-    }
+    
 
     void FlushUI()
     {

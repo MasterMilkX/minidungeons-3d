@@ -14,12 +14,19 @@ public class LevelView : MonoBehaviour
     public GameObject[] _gameCharacters3D;
 
     public Dictionary<SimPoint, GameObject> _javelins;
+    public Dictionary<SimPoint, GameObject> _javelins3D;
     int counter = 0;
 
     bool[] _lefties;
+    bool[] _lefties3D;
 
-    public GameObject _tilePrefab;
+    public GameObject _tilePrefab2D;
     public Vector3 _tileSize;
+
+    public GameObject _floorPrefab3D;
+    public GameObject _ceilingPrefab3D;
+    public GameObject _wallPrefab3D;
+    public Transform _levelTransform;
 
     public bool Animating;
     public bool Replaying = false;
@@ -40,7 +47,10 @@ public class LevelView : MonoBehaviour
 
         _level = level;
         _map = new GameObject[level.BaseMap.GetLength(0), level.BaseMap.GetLength(1)];
+        
+        // 2d and 3d rendering of the level
         LayoutView(level);
+        Build3DMap(level);
 
         _level.SetActionCaching(true);
         Initialized = true;
@@ -75,8 +85,8 @@ public class LevelView : MonoBehaviour
         {
             for (int y = 0; y < level.BaseMap.GetLength(1); y++)
             {
-                Vector3 newPosition = transform.position + new Vector3(_tilePrefab.GetComponent<Renderer>().bounds.size.x * x, _tilePrefab.GetComponent<Renderer>().bounds.size.y * y * -1, 0);
-                GameObject newTile = (GameObject)Instantiate(_tilePrefab, newPosition, Quaternion.identity);
+                Vector3 newPosition = transform.position + new Vector3(_tilePrefab2D.GetComponent<Renderer>().bounds.size.x * x, _tilePrefab2D.GetComponent<Renderer>().bounds.size.y * y * -1, 0);
+                GameObject newTile = (GameObject)Instantiate(_tilePrefab2D, newPosition, Quaternion.identity);
 
 
                 //Debug.Log(newTile + " " + (++counter).ToString());
@@ -132,6 +142,114 @@ public class LevelView : MonoBehaviour
         {
             _level = level.Clone();
         }
+    }
+
+    public void Build3DMap(SimLevel level)
+    {
+        List<Vector3> open_pos = new List<Vector3>();
+
+        //place the floor and ceiling
+        for (int h = 0; h < level.BaseMap.GetLength(0); h++)
+        {
+            for (int w = 0; w < level.BaseMap.GetLength(1); w++)
+            {
+                Debug.Log("Here: " + h + ", " + w);
+                GameObject newFloor = Instantiate(_floorPrefab3D, new Vector3(w, -0.55f, h), Quaternion.identity);
+                newFloor.transform.SetParent(_levelTransform);
+                GameObject newCeiling = Instantiate(_ceilingPrefab3D, new Vector3(w, 0.55f, h), Quaternion.identity * Quaternion.Euler(180, 0, 0));
+                newCeiling.transform.SetParent(_levelTransform);
+
+                if (_map[h, w].GetComponent<Tile>().TileType == TileTypes.wall || _map[h, w].GetComponent<Tile>().TileType == TileTypes.fillerWall)
+                {
+                    GameObject newObj = Instantiate(_wallPrefab3D, new Vector3(w, 0.0f, h), Quaternion.identity);
+                    newObj.transform.SetParent(_levelTransform);
+                }
+            }
+        }
+        _gameCharacters3D = new GameObject[level.Characters.Length];
+        _lefties3D = new bool[level.Characters.Length];
+        _javelins3D = new Dictionary<SimPoint, GameObject>();
+
+        for (int character = 0; character < level.Characters.Length; character++)
+        {
+            var characterPosition = _levelTransform.position + new Vector3(level.Characters[character].Point.Y, 0, level.Characters[character].Point.X);
+            GameObject gameCharacter = GetComponent<SimGameCharacterFactory>().SpawnGameCharacter3D(level.Characters[character].CharacterType, characterPosition);
+            _gameCharacters3D[character] = gameCharacter;
+            gameCharacter.transform.SetParent(_levelTransform);
+        }
+
+        //place populate the level
+        /*for (int h = 0; h < currentLevelArray.Length; h++)
+        {
+            for (int w = 0; w < currentLevelArray[h].Length; w++)
+            {
+                GameObject newObj = null;
+                string val = currentLevelArray[h][w];
+                // wall
+                if (val == "X")
+                {
+                    newObj = Instantiate(wall, new Vector3(w, 0.0f, h), Quaternion.identity);
+
+                }
+                // hero
+                else if (val == "H")
+                {
+                    Player.position = new Vector3(w, -0.55f, h);
+                    Player.rotation = Quaternion.identity;
+                }
+                // exit
+                else if (val == "e")
+                {
+                    newObj = Instantiate(exit, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "m")
+                {
+                    newObj = Instantiate(minitaur, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "M")
+                {
+                    newObj = Instantiate(goblin, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "R")
+                {
+                    newObj = Instantiate(wizard, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "o")
+                {
+                    newObj = Instantiate(ogre, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "b")
+                {
+                    newObj = Instantiate(blob, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "T")
+                {
+                    newObj = Instantiate(treasure, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "t")
+                {
+                    newObj = Instantiate(trap, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "P")
+                {
+                    newObj = Instantiate(potion, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "p")
+                {
+                    newObj = Instantiate(portal, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+
+                // is this technically less code? idk
+                try
+                {
+                    newObj.transform.SetParent(Level);
+                }
+                catch
+                {
+                    // do nothing this is fine
+                }
+            }
+        }*/
     }
     public void RefreshView(SimLevel level)
     {
