@@ -28,6 +28,17 @@ public class HumanGameManager3D : MonoBehaviour
     public GameObject wall;
     public GameObject floor;
     public GameObject ceiling;
+    public GameObject exit;
+    public GameObject minitaur;
+    public GameObject goblin;
+    public GameObject wizard;
+    public GameObject ogre;
+    public GameObject blob;
+    public GameObject potion;
+    public GameObject treasure;
+    public GameObject trap;
+    public GameObject portal;
+    public Transform Player;
 
     public Transform Level;
     public List<Transform> place_objs;
@@ -74,6 +85,7 @@ public class HumanGameManager3D : MonoBehaviour
         {
             for (int w = 0; w < currentLevelArray[h].Length; w++)
             {
+                Debug.Log("Here: " + h + ", " + w);
                 GameObject newFloor = Instantiate(floor, new Vector3(w, -0.55f, h), Quaternion.identity);
                 newFloor.transform.SetParent(Level);
             }
@@ -90,26 +102,81 @@ public class HumanGameManager3D : MonoBehaviour
         }
 
         
-        //place the floor
+        //place populate the level
         for (int h = 0; h < currentLevelArray.Length; h++)
         {
             for (int w = 0; w < currentLevelArray[h].Length; w++)
             {
-                if (currentLevelArray[h][w] == "X")
+                GameObject newObj = null;
+                string val = currentLevelArray[h][w];
+                // wall
+                if (val == "X")
                 {
-                    GameObject newWall = Instantiate(wall, new Vector3(w, 0.0f, h), Quaternion.identity);
-                    newWall.transform.SetParent(Level);
+                    newObj = Instantiate(wall, new Vector3(w, 0.0f, h), Quaternion.identity);
+                    
                 }
-                else
-                    open_pos.Add(new Vector3(w, -0.55f, h));
+                // hero
+                else if (val == "H")
+                {
+                    Player.position = new Vector3(w, -0.55f, h);
+                }
+                // exit
+                else if(val == "e")
+                {
+                    newObj = Instantiate(exit, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "m")
+                {
+                    newObj = Instantiate(minitaur, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "M")
+                {
+                    newObj = Instantiate(goblin, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "R")
+                {
+                    newObj = Instantiate(wizard, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "o")
+                {
+                    newObj = Instantiate(ogre, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "b")
+                {
+                    newObj = Instantiate(blob, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "T")
+                {
+                    newObj = Instantiate(treasure, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "t")
+                {
+                    newObj = Instantiate(trap, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "P")
+                {
+                    newObj = Instantiate(potion, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                else if (val == "p")
+                {
+                    newObj = Instantiate(portal, new Vector3(w, 0.0f, h), Quaternion.identity);
+                }
+                
+                // is this technically less code? idk
+                try
+                {
+                    newObj.transform.SetParent(Level);
+                }
+                catch
+                {
+                    // do nothing this is fine
+                }
             }
         }
 
-        //place the player on a random open spot
-        //Player.position = open_pos[Random.Range(0, open_pos.Count)];
+        //place the player at the player starting postiion
 
-
-
+        //
     }
 
     void FlushUI()

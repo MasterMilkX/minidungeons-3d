@@ -45,12 +45,12 @@ public class LevelView : MonoBehaviour
         _okForInput = true;
         _busyAnimating = 0;
 
-        sbH = (StatusBar)healthBar.GetComponent(typeof(StatusBar));
+        /*sbH = (StatusBar)healthBar.GetComponent(typeof(StatusBar));
         sbH.CreateFullBar(10, false);
         sbT = (StatusBar)treasureBar.GetComponent(typeof(StatusBar));
         sbT.CreateFullBar(level.Treasures.Count, true);
         sbM = (StatusBar)monsterBar.GetComponent(typeof(StatusBar));
-        sbM.CreateFullBar(level.Monsters.Count, true);
+        sbM.CreateFullBar(level.Monsters.Count, true);*/
         Debug.Log("Initialized");
         for (int i = 0; i < level.Characters.Length; i++)
         {
