@@ -199,13 +199,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96933497}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.89, y: 28.12, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.89, y: 9.110001, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &402092859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -340,19 +340,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.7424194
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30
+      value: 10.99
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.0322232
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalRotation.x
@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalRotation.z
@@ -372,16 +372,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: Level
+      value: 
+      objectReference: {fileID: 1480702789}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: _tilePrefab2D
+      value: 
+      objectReference: {fileID: 118528, guid: e10d8c68641334806897fcd2348304a4, type: 3}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: _wallPrefab3D
+      value: 
+      objectReference: {fileID: 4162201327696575966, guid: 813975e86091243f4858fe224445d737, type: 3}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: audio_Manager
       value: 
       objectReference: {fileID: 1296643687}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: _floorPrefab3D
+      value: 
+      objectReference: {fileID: 5706305276085485130, guid: cfbc9a6e4eec447b49c20879d594adbf, type: 3}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: _levelTransform
+      value: 
+      objectReference: {fileID: 1480702789}
+    - target: {fileID: 11426760, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
+      propertyPath: _ceilingPrefab3D
+      value: 
+      objectReference: {fileID: 3430069850749184731, guid: 47aa469eeec384c859cebdb87b3e9e08, type: 3}
     - target: {fileID: 114000010329585552, guid: fb4af0a85f4a54a7f842220050f8b445, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -518,21 +542,7 @@ MonoBehaviour:
   _inGame: {fileID: 2012468744}
   PlayingClassic: 0
   _UIInterfaces: []
-  wall: {fileID: 4162201327696575966, guid: 813975e86091243f4858fe224445d737, type: 3}
-  floor: {fileID: 5706305276085485130, guid: cfbc9a6e4eec447b49c20879d594adbf, type: 3}
-  ceiling: {fileID: 5706305276085485130, guid: cfbc9a6e4eec447b49c20879d594adbf, type: 3}
-  exit: {fileID: 8497383888270127508, guid: d9da0de7a26064ca489ed010de327316, type: 3}
-  minitaur: {fileID: 5441025172861261170, guid: 88037d1d1a81e45ae87de3753f3723ac, type: 3}
-  goblin: {fileID: 8070071604484152020, guid: 99b94adde58944e718396ea29b5aafa5, type: 3}
-  wizard: {fileID: 5624911114423215615, guid: 71362a2841bb2448791e4d8fa890f15e, type: 3}
-  ogre: {fileID: 4179290166219458850, guid: 7dc12a795049c49e78505996748c0115, type: 3}
-  blob: {fileID: 1882898758054434403, guid: 389e591a029ae4c58803e9d9566301fb, type: 3}
-  potion: {fileID: 8222279911215774055, guid: aafae43728d7b4bb2b32f41d9d9659ab, type: 3}
-  treasure: {fileID: 6462028269215956409, guid: e117af97a80a044a7a0a8fe0c86734d9, type: 3}
-  trap: {fileID: 2996300674523108622, guid: f1fbc4fe5069c4065b1c5adf9aa3b591, type: 3}
-  portal: {fileID: 4420179356093284829, guid: 6f1607806d4c44255ae52eb1f15ac6c1, type: 3}
   Player: {fileID: 822782124}
-  Level: {fileID: 1480702789}
   place_objs: []
 --- !u!114 &1120357222
 MonoBehaviour:
@@ -573,7 +583,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   moveSpeed: 0.75
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  turnSpeed: 0.75
+  turnSpeed: 8
 --- !u!1001 &1200522783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1513,6 +1523,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7932979930088650576, guid: 73fec0c003dae4e018afd6e813112eea, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7932979930088650576, guid: 73fec0c003dae4e018afd6e813112eea, type: 3}
       propertyPath: turnSpeed
       value: 8
