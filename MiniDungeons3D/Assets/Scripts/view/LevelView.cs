@@ -9,6 +9,12 @@ public class LevelView : MonoBehaviour
     public StatusBar sbH, sbT, sbM;
     public SimLevel _level;
     public GameObject healthBar, treasureBar, monsterBar;
+    public GameObject compass;
+
+    public GameObject damageFXScreen;
+    int lastHealth;
+    float damageTimer = 0.6f;
+
     public GameObject[,] _map;
     public GameObject[] _gameCharacters;
     public GameObject[] _gameCharacters3D;
@@ -29,6 +35,7 @@ public class LevelView : MonoBehaviour
     public Transform _levelTransform;
 
     public RenderTexture targetTexture3D;
+    public Transform fullPlayer3DView;
 
     public bool Animating;
     public bool Replaying = false;
@@ -61,6 +68,7 @@ public class LevelView : MonoBehaviour
 
         sbH = (StatusBar)healthBar.GetComponent(typeof(StatusBar));
         sbH.CreateFullBar(10, false);
+        lastHealth = 10;
         sbT = (StatusBar)treasureBar.GetComponent(typeof(StatusBar));
         sbT.CreateFullBar(level.Treasures.Count, true);
         sbM = (StatusBar)monsterBar.GetComponent(typeof(StatusBar));
@@ -192,7 +200,16 @@ public class LevelView : MonoBehaviour
     {
         if (Animating && !Replaying)
         {
+
+            int newHealth = level.SimHero.Health;
+
             StartCoroutine(Animate(level));
+
+            //take damage
+            if(newHealth < lastHealth){
+                StartCoroutine(FlashDamage());
+                StartCoroutine(ShakeShack(fullPlayer3DView,lastHealth-newHealth));
+            }
 
             //update UI
             sbH.UpdateValue(level.SimHero.Health);
@@ -232,6 +249,8 @@ public class LevelView : MonoBehaviour
 
             _level = level.Clone();
         }
+
+        lastHealth = level.SimHero.Health;
     }
 
     IEnumerator TimedAnimationToggle(GameObject target, string parameterName, bool targetValue, float timeToWait)
@@ -274,6 +293,26 @@ public class LevelView : MonoBehaviour
         GameObject bloodDecoration = GetComponent<SimGameCharacterFactory>().SpawnGameCharacter(GameCharacterTypes.BloodDecoration, target.transform.position);
         bloodDecoration.transform.parent = target.transform;
         StartCoroutine(TimedDestroy(bloodDecoration, 1f));
+    }
+
+    //flash the damage screen if took damage
+    IEnumerator FlashDamage(){
+        damageFXScreen.SetActive(true);
+        yield return new WaitForSeconds(damageTimer);
+        damageFXScreen.SetActive(false);
+    }
+
+    //shakes an object
+    IEnumerator ShakeShack(Transform shook,int intensity=1){
+
+        for ( int i = 0; i < 10; i++){
+            Vector3 randVec = new Vector3((10-i/2)*(UnityEngine.Random.value < 0.5 ? -1 : 1),(10-i/2)*(UnityEngine.Random.value < 0.5 ? -1 : 1),0.0f);    //amount to change by
+
+            shook.localPosition += randVec*intensity;
+            yield return new WaitForSeconds(damageTimer/20.0f);
+            shook.localPosition -= randVec*intensity;
+            yield return new WaitForSeconds(damageTimer/20.0f);
+        }
     }
 
     enum MoveDirections
@@ -755,6 +794,7 @@ public class LevelView : MonoBehaviour
             }
         }
     }
+
 
     public void DestroyGO(GameObject target)
     {
