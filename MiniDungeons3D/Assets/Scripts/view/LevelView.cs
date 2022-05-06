@@ -368,6 +368,7 @@ public class LevelView : MonoBehaviour
             // yield return new WaitForSeconds(0.05f);
             var levelChar = _level.Characters[i];
             var viewChar = _gameCharacters[i];
+            var viewChar3D = _gameCharacters3D[i];
             List<SimCharacterAction> actions = levelChar.CachedActions;
 
             foreach (SimCharacterAction action in actions)
@@ -376,6 +377,10 @@ public class LevelView : MonoBehaviour
                 var actionStartPosition = transform.position + new Vector3(action.FromPoint.X * _tileSize.x, action.FromPoint.Y * _tileSize.y * -1, 0);
                 var actionEndPosition = transform.position + new Vector3(action.ToPoint.X * _tileSize.x, action.ToPoint.Y * _tileSize.y * -1, 0);
 
+                var ownPosition3D = _levelTransform.position + new Vector3(levelChar.Point.Y, -0.55f, levelChar.Point.X);
+                var actionStartPosition3D = _levelTransform.position + new Vector3(action.FromPoint.Y, -0.55f, action.FromPoint.X);
+                var actionEndPosition3D = _levelTransform.position + new Vector3(action.ToPoint.Y, -0.55f, action.ToPoint.X);
+                
                 bool foundFighting = false;
                 if (action.ActionType == SimCharacterActionTypes.Fight)
                 {
@@ -407,11 +412,15 @@ public class LevelView : MonoBehaviour
                     StartCoroutine(TimedAnimationToggle(viewChar, "Moving", false, MoveSpeed));
                     Hashtable tweenArgs = iTween.Hash("position", actionEndPosition, "time", MoveSpeed, "easetype", iTween.EaseType.linear, "oncomplete", "SetAnimating", "oncompletetarget", this.gameObject, "oncompleteparams", -1);
                     SetAnimating(1);
+                    
                     iTween.MoveTo(viewChar, tweenArgs);
+                    viewChar3D.transform.position = actionEndPosition3D;
                 }
             }
 
         }
+        
+
         // yield return new WaitForSeconds(MoveSpeed);
     }
     void AnimateBlockedMoves(SimLevel level)
@@ -802,6 +811,10 @@ public class LevelView : MonoBehaviour
         while (_busyAnimating > 0) { yield return null; }
         AnimateClampBlobDevelopment(level);
         AnimateDeaths(level);
+        
+        
+        
+        
         FlushCachedActions(level);
         yield return null;
 
