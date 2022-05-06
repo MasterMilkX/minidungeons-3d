@@ -6,6 +6,11 @@ public class BillboardSprite : MonoBehaviour
 {
     public Transform faceTarget;
 
+
+    private void Start()
+    {
+        faceTarget = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     void Update()
     {
         //always face the target

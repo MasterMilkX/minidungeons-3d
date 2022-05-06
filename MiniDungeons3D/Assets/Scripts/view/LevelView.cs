@@ -28,6 +28,8 @@ public class LevelView : MonoBehaviour
     public GameObject _wallPrefab3D;
     public Transform _levelTransform;
 
+    public RenderTexture targetTexture3D;
+
     public bool Animating;
     public bool Replaying = false;
     public float MoveSpeed = 0.01f;
@@ -172,10 +174,18 @@ public class LevelView : MonoBehaviour
 
         for (int character = 0; character < level.Characters.Length; character++)
         {
-            var characterPosition = _levelTransform.position + new Vector3(level.Characters[character].Point.Y, 0, level.Characters[character].Point.X);
+            var characterPosition = _levelTransform.position + new Vector3(level.Characters[character].Point.Y, -0.55f, level.Characters[character].Point.X);
             GameObject gameCharacter = GetComponent<SimGameCharacterFactory>().SpawnGameCharacter3D(level.Characters[character].CharacterType, characterPosition);
             _gameCharacters3D[character] = gameCharacter;
             gameCharacter.transform.SetParent(_levelTransform);
+
+            if (level.Characters[character].CharacterType == GameCharacterTypes.Hero)
+            {
+                // this is the player, setup the camera
+                Camera playerCam = gameCharacter.GetComponentInChildren<Camera>();
+                playerCam.targetTexture = targetTexture3D;
+                gameCharacter.transform.rotation = Quaternion.identity;
+            }
         }
 
         //place populate the level

@@ -115,6 +115,7 @@ namespace Assets.Scripts.simulator.Controllers.Human
             actions = new List<SimHeroAction>();
             positions = new List<SimPoint>();
             levelStates = new List<string>();
+            Player3D = GameObject.FindWithTag("Player").transform;
             //Debug.Log("Javelins:" + _level.SimHero.Javelins);
         }
         public SimHeroAction NextAction(SimLevel level)
