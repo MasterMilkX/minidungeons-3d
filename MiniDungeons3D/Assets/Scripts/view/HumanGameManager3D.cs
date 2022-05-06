@@ -130,8 +130,12 @@ public class HumanGameManager3D : MonoBehaviour
             {
                 mapstring += map[i][j];
             }
-            mapstring += "\n";
+            if (i < map.Length - 1)
+            {
+                mapstring += "\n";
+            }
         }
+        Debug.Log(mapstring);
         return mapstring;
     }
 }

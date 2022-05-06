@@ -5,16 +5,6 @@ using UnityEngine;
 public class TestLevelGenerator : MonoBehaviour
 {
 
-	public GameObject wall;
-	public GameObject floor;
-	public GameObject ceiling;
-
-	public Transform Level;
-	public List<Transform> place_objs;
-
-	public int levelWidth = 10;
-	public int levelHeight = 10;
-
 	public HumanGameManager3D hgm3d;
 
 	void Start(){

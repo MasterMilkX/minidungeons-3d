@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class LevelView : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class LevelView : MonoBehaviour
             GameObject viewChar = _gameCharacters[i];
             if (viewChar.GetComponent<Animator>() != null)
             {
-                viewChar.GetComponent<Animator>().SetFloat("RandomOffset", Random.Range(0.5f, 1.0f));
+                viewChar.GetComponent<Animator>().SetFloat("RandomOffset", UnityEngine.Random.Range(0.5f, 1.0f));
                 viewChar.GetComponent<Animator>().SetBool("Alive", true);
             }
 
@@ -67,11 +68,12 @@ public class LevelView : MonoBehaviour
 
     void LayoutView(SimLevel level)
     {
+        Debug.Log(level.BaseMap.GetLength(1));
         for (int x = 0; x < level.BaseMap.GetLength(0); x++)
         {
             for (int y = 0; y < level.BaseMap.GetLength(1); y++)
             {
-                Vector3 newPosition = transform.position + new Vector3(_tilePrefab.GetComponent<Renderer>().bounds.size.x * x, _tilePrefab.GetComponent<Renderer>().bounds.size.y * y * -1, 0);
+                Vector3 newPosition = transform.position + new Vector3(_tilePrefab.GetComponent<Renderer>().bounds.size.x * x * 1.2f, _tilePrefab.GetComponent<Renderer>().bounds.size.y * y * -1 * 1.2f, 0);
                 GameObject newTile = (GameObject)Instantiate(_tilePrefab, newPosition, Quaternion.identity);
 
 
@@ -84,10 +86,11 @@ public class LevelView : MonoBehaviour
                     newTile.GetComponent<Tile>().TileType = level.BaseMap[x, y].TileType;
 
                 }
-                catch
+                catch (Exception ex)
                 {
                     Debug.Log(level.BaseMap[x, y] + " :: " + x + " : " + y + " :: ");
                     Debug.Log("New tile crashed");
+                    Debug.Log(ex.ToString());
                 }
 
                 newTile.transform.parent = transform;
@@ -177,7 +180,7 @@ public class LevelView : MonoBehaviour
         {
 
         }
-        yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1.0f));
         try
         {
             target.GetComponent<Animator>().SetBool(parameterName, targetValue);
