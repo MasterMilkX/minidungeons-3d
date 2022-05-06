@@ -90,8 +90,8 @@ public class SimOgreMonster : SimMonsterCharacter{
 #if UNITY_EDITOR
 		if(other.CharacterType == GameCharacterTypes.Hero){
 			//camera shake
-			GameObject camera = GameObject.Find ("Main Camera");
-            camera.GetComponent<ShakeCamera>().MinorShake(.03f);
+			/*GameObject camera = GameObject.Find ("MinimapCamera");
+            camera.GetComponent<ShakeCamera>().MinorShake(.03f);*/
         }
 #endif
 		

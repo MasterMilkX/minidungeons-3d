@@ -89,10 +89,10 @@ public class SimRangedMonster : SimMonsterCharacter{
 
 				//camera shake
 #if UNITY_EDITOR
-				GameObject camera = GameObject.Find ("Main Camera");
-				camera.GetComponent<ShakeCamera> ().MinorShake (.03f);
+				/*GameObject camera = GameObject.Find ("MinimapCamera");
+				camera.GetComponent<ShakeCamera> ().MinorShake (.03f);*/
 #endif
-				if(CacheActions){CachedActions.Add(new SimCharacterAction(SimCharacterActionTypes.RangedAttack,Point,simLevel.SimHero.Point));}
+				if (CacheActions){CachedActions.Add(new SimCharacterAction(SimCharacterActionTypes.RangedAttack,Point,simLevel.SimHero.Point));}
 			} else {
 				
 				//SimPoint[] path = simLevel.AStar(Point, simLevel.SimHero.Point);

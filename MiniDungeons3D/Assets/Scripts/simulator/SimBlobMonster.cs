@@ -116,8 +116,8 @@ public class SimBlobMonster : SimMonsterCharacter{
 #if UNITY_EDITOR
 		if(other.CharacterType == GameCharacterTypes.Hero){
 			//camera shake
-			GameObject camera = GameObject.Find ("Main Camera");
-            camera.GetComponent<ShakeCamera>().MinorShake(.03f);
+			/*GameObject camera = GameObject.Find ("MinimapCamera");
+            camera.GetComponent<ShakeCamera>().MinorShake(.03f);*/
         }
 #endif
 		if(CacheActions && other.CharacterType == GameCharacterTypes.Trap){CachedActions.Add(new SimCharacterAction(SimCharacterActionTypes.TrapSpring, Point, other.Point));}

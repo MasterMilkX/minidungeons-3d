@@ -152,8 +152,8 @@ public class SimHero : SimGameCharacter{
 			TakeDamage(simLevel, other.Damage);
 			//camera shake
 #if UNITY_EDITOR
-			GameObject camera = GameObject.Find ("Main Camera");
-            camera.GetComponent<ShakeCamera>().MinorShake(.03f);
+			/*GameObject camera = GameObject.Find ("MinimapCamera");
+            camera.GetComponent<ShakeCamera>().MinorShake(.03f);*/
 #endif
           
             if (CacheActions){CachedActions.Add(new SimCharacterAction(SimCharacterActionTypes.Fight, Point, other.Point));}

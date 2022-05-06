@@ -8,13 +8,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using Assets.Scripts.simulator.Controllers.Human;
 
 public class HumanGameManager3D : MonoBehaviour
 {
     public string currentLevelString;
     public string[][] currentLevelArray;
     public SimLevel currentLevel;
-    public SimControllerHeroHuman humanController;
+    public SimControllerHeroHuman3D humanController;
     public LevelView levelView;
     public GameObject _inGame;
     public static ViewState _viewState = ViewState.MainMenu;
@@ -23,6 +24,8 @@ public class HumanGameManager3D : MonoBehaviour
 
     public GameObject[] _UIInterfaces;
 
+    // Made SimHeroAction public.
+    public SimHeroAction nextAction;
 
     // 3D rendering
     public GameObject wall;
@@ -46,14 +49,39 @@ public class HumanGameManager3D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        humanController = GetComponent<SimControllerHeroHuman3D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+
+        if (levelView._okForInput)
+        {
+            if (humanController.HasAction)
+            {
+                nextAction = humanController.NextAction(currentLevel);
+                //Debug.Log("act " + nextAction);
+                if (currentLevel.MoveIsLegal(currentLevel.SimHero, nextAction))
+                {
+                    Debug.Log(nextAction.ActionType.ToString());
+                    currentLevel.RunTurn(nextAction);
+                    levelView.RefreshView(currentLevel);
+                    try
+                    {
+                        humanController.positions.Add(currentLevel.SimHero.Point);
+                        humanController.levelStates.Add(currentLevel.ToAsciiMap());
+                    }
+                    catch
+                    {
+                        Debug.Log("human controller issue");
+                    }
+                    // try { _ReplayManager.sessionReplay.AddEngineAction(nextAction); } catch { }
+
+                }
+            }
+        }
+    }    
 
     public void LoadLevel(string[][] levelArray)
     {
@@ -72,6 +100,9 @@ public class HumanGameManager3D : MonoBehaviour
         _inGame.SetActive(true);
 
         PlaceAscMap();
+        humanController.Initialize(currentLevel, Player);
+
+
         _viewState = ViewState.Playing;
     }
 
@@ -119,6 +150,7 @@ public class HumanGameManager3D : MonoBehaviour
                 else if (val == "H")
                 {
                     Player.position = new Vector3(w, -0.55f, h);
+                    Player.rotation = Quaternion.identity;
                 }
                 // exit
                 else if(val == "e")
@@ -173,10 +205,6 @@ public class HumanGameManager3D : MonoBehaviour
                 }
             }
         }
-
-        //place the player at the player starting postiion
-
-        //
     }
 
     void FlushUI()
